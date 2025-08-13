@@ -1,0 +1,42 @@
+/* @import url('./layout/header/header.css');
+@import url('./components/modals/modal-container.css'); */
+@use './components/internal/skeleton/skeleton.scss';
+@use './components/internal/button/button.scss';
+@use './components/internal/text-field/text-field.scss';
+@use './components/internal/text-field/search-input.scss';
+@use './components/internal/tooltip/tooltip.scss';
+@use './components/internal/text-link/text-link.component.scss';
+@use './components/modals/modal-container.css';
+@use './components/internal/checkbox/checkbox.scss';
+@use './components/internal/dropdown/dropdown.component.scss';
+
+@use './app/pages/networks/create/create-l1.css';
+
+@use './app/layout/header/header.scss';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*  disable google auto fill styles */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+	transition: background-color 5000s ease-in-out 0s, color 5000s ease-in-out 0s;
+}
+
+.form-control {
+	box-sizing: border-box;
+	clear: both;
+	position: relative;
+	text-align: inherit;
+}
+
+body {
+	font-family: 'Space Grotesk', sans-serif;
+}
+
+html {
+	scroll-behavior: smooth;
+}

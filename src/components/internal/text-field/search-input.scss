@@ -1,0 +1,44 @@
+.search-input {
+	@apply px-4;
+	@apply py-2;
+
+	@apply h-[64px];
+	@apply w-full;
+
+	@apply rounded-2xl;
+
+	@apply text-sm;
+	@apply text-agrey-900;
+	@apply dark:text-white;
+
+	@apply bg-transparent;
+
+	@apply border;
+	@apply border-agrey-300;
+	@apply dark:border-agrey-800;
+
+	//hover
+	@apply hover:border-ablue-200;
+	@apply hover:dark:border-ablue-300;
+	@apply hover:bg-light-900;
+	@apply hover:dark:bg-dark-900;
+
+	// focus
+	@apply focus:outline-none;
+	@apply focus:border-ablue-500;
+	@apply focus:dark:border-ablue-400;
+
+	// placeholder
+	@apply placeholder:text-ghostly_grey-300;
+	@apply placeholder:dark:text-agrey-700;
+
+	@apply placeholder:text-sm;
+
+	@apply disabled:text-ghostly_grey-300;
+	@apply disabled:dark:text-agrey-700;
+	@apply disabled:hover:border-transparent;
+
+	&.invalid {
+		@apply border-ared-500 #{!important}; /* Add a red border */
+	}
+}
