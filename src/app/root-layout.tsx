@@ -13,7 +13,7 @@ import ModalContainer from '../components/modals/modal-container.component';
 import AppInit from '../components/app-init/app-init.component';
 
 // pages
-import DiscoverPage from './pages/discover/discover.page';
+import DiscoverPage from './pages/discover/discover.page.tsx';
 import DashboardPage from './pages/dashboard/dashboard.page';
 
 // import RootPage from './pages/root-page.tsx';
