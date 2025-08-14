@@ -37,7 +37,7 @@ export default function FlowchartPage() {
 				</header>
 
 				{/* Flowchart */}
-				<div className="relative flex flex-col items-center space-y-10">
+				<div className="relative flex flex-col items-start space-y-10">
 					{steps.map((step, index) => (
 						<div
 							key={index}
