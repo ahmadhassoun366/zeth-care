@@ -44,6 +44,7 @@ import APP_MODALS from '../static/enums/app.modals';
 import { THEMES } from '../static/settings/general-settings.data';
 import NotFoundPage from './pages/404/404-page.tsx';
 import About from './pages/about/about.page.tsx';
+import FlowchartPage from './pages/flowchart/flowchart.page.tsx';
 // *~~~ lazy loaded pages ~~~*
 
 // pages
@@ -104,7 +105,7 @@ function RoutingComponent() {
 					<Route path={ROUTES.root} element={<Navigate to={ROUTES.discover.root} />} />
 					<Route path={ROUTES.omos} element={<About />} />
 					<Route path={ROUTES.dashboard.root} element={<DashboardPage />} />
-
+					<Route path={ROUTES.flowchart} element={<FlowchartPage />} />
 					{/* 404 */}
 					<Route path="*" element={<NotFoundPage />} />
 

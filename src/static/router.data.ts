@@ -2,6 +2,7 @@ const ROUTES = {
 	root: '/',
 	omos: '/omos',
 	tilgange: '/tilgange',
+	flowchart: '/flowchart',
 	job: '/job',
 	dashboard: {
 		root: '/dashboard',

@@ -24,7 +24,7 @@ const item: Variants = {
 
 export default function About() {
 	return (
-		<main className="relative overflow-hidden bg-gradient-to-b from-gray-50 to-white py-20 dark:from-neutral-950 dark:to-neutral-900 lg:py-20">
+		<main className="relative overflow-hidden bg-gradient-to-b from-gray-50 to-white pt-20 dark:from-neutral-950 dark:to-neutral-900 lg:pt-20">
 			{/* Top banner */}
 			<section className="relative bg-gradient-to-b from-gray-50 to-white dark:from-neutral-950 dark:to-neutral-900 py-16 lg:py-24">
 				{/* soft background blobs */}

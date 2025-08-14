@@ -204,15 +204,15 @@ export default function HeaderComponent() {
 								isActive={isActive('/indsatser')}
 							/>
 
-							{/* Tilgange & metoder */}
+							{/* flowchart */}
 							<li>
 								<Link
 									className={`nav-link ${
-										isActive(ROUTES.tilgange) ? 'is-active' : ''
+										isActive(ROUTES.flowchart) ? 'is-active' : ''
 									}`}
-									to={ROUTES.tilgange}
+									to={ROUTES.flowchart}
 								>
-									Tilgange & metoder
+									Flowchart
 								</Link>
 							</li>
 
@@ -238,7 +238,9 @@ export default function HeaderComponent() {
 							{/* Job */}
 							<li>
 								<Link
-									className={`nav-link ${isActive(ROUTES.job) ? 'is-active' : ''}`}
+									className={`nav-link ${
+										isActive(ROUTES.job) ? 'is-active' : ''
+									}`}
 									to={ROUTES.job}
 								>
 									Job
