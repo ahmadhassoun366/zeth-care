@@ -36,7 +36,7 @@ const navMain = [
 		label: 'About us',
 		type: 'dropdown' as const,
 		items: [
-			{ label: 'Om Zeth Care', href: '/om' },
+			{ label: 'Om Tryglund', href: '/om' },
 			{ label: 'Målgruppe & faglighed', href: '/om#maalgruppe' },
 		],
 	},
@@ -219,7 +219,7 @@ export default function HeaderComponent() {
 							<NavDropdown
 								label="About us"
 								items={[
-									{ label: 'Om Zeth Care', href: '/om' },
+									{ label: 'Om Tryglund', href: '/om' },
 									{ label: 'Målgruppe & faglighed', href: '/om#maalgruppe' },
 								]}
 								isActive={isActive('/om')}

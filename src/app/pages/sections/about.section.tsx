@@ -46,7 +46,7 @@ export default function About() {
 							variants={fadeUp}
 							className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white md:text-4xl"
 						>
-							Om Zeth Care
+							Om Tryglund
 						</motion.h2>
 
 						<motion.p

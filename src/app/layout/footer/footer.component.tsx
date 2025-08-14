@@ -18,7 +18,7 @@ export default function FooterComponent() {
 							>
 								<path d="M0.41 10.3847C1.14777 7.4194..." />
 							</svg>
-							<span className="sr-only">Zeth Care</span>
+							<span className="sr-only">Tryglund</span>
 						</Link>
 						<p className="mt-4 max-w-xs text-sm text-neutral-600 dark:text-white/70">
 							Specialiserede indsatser og støtte for børn, unge og deres familier –
@@ -129,7 +129,7 @@ export default function FooterComponent() {
 							dark:border-white/10 dark:text-white/70 
 							sm:flex sm:items-center sm:justify-between"
 				>
-					<p>© {new Date().getFullYear()} Zeth Care. Alle rettigheder forbeholdes.</p>
+					<p>© {new Date().getFullYear()} Tryglund. Alle rettigheder forbeholdes.</p>
 					<div className="mt-4 sm:mt-0 flex gap-4">
 						<Link
 							to="/legal/vilkar"
