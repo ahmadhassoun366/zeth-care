@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { Facebook, Instagram, Linkedin } from 'lucide-react';
 
 export default function FooterComponent() {
 	return (
@@ -38,9 +39,9 @@ export default function FooterComponent() {
 									required
 									placeholder="Din e-mailadresse"
 									className="flex-1 rounded-lg border border-neutral-300 bg-white px-4 py-2 text-sm 
-                             placeholder-neutral-500 focus:border-green-500 focus:outline-none 
-                             focus:ring-2 focus:ring-green-500/50
-                             dark:border-white/10 dark:bg-white/10 dark:placeholder-white/50"
+											placeholder-neutral-500 focus:border-green-500 focus:outline-none 
+											focus:ring-2 focus:ring-green-500/50
+											dark:border-white/10 dark:bg-white/10 dark:placeholder-white/50"
 								/>
 								<button
 									type="submit"
@@ -65,22 +66,10 @@ export default function FooterComponent() {
 								'Støttekontaktperson',
 							],
 						},
-						{
-							title: 'Om os',
-							links: ['Profil', 'Team', 'Historie'],
-						},
-						{
-							title: 'Hjælp',
-							links: ['Kontakt', 'FAQ', 'Live Chat'],
-						},
-						{
-							title: 'Juridisk',
-							links: ['Vilkår', 'Privatlivspolitik', 'Cookies'],
-						},
-						{
-							title: 'Ressourcer',
-							links: ['Downloads', 'Guides', 'Infografikker'],
-						},
+						{ title: 'Om os', links: ['Profil', 'Team', 'Historie'] },
+						{ title: 'Hjælp', links: ['Kontakt', 'FAQ', 'Live Chat'] },
+						{ title: 'Juridisk', links: ['Vilkår', 'Privatlivspolitik', 'Cookies'] },
+						{ title: 'Ressourcer', links: ['Downloads', 'Guides', 'Infografikker'] },
 					].map((col) => (
 						<div key={col.title}>
 							<p className="font-semibold">{col.title}</p>
@@ -103,23 +92,33 @@ export default function FooterComponent() {
 					<div>
 						<p className="font-semibold">Følg os</p>
 						<ul className="mt-4 flex gap-4">
-							{['Facebook', 'Instagram', 'LinkedIn'].map((social) => (
-								<li key={social}>
-									<a
-										href="#"
-										className="transition hover:text-green-600 dark:hover:text-green-400"
-										aria-label={social}
-									>
-										<svg
-											className="h-5 w-5"
-											fill="currentColor"
-											viewBox="0 0 24 24"
-										>
-											<circle cx="12" cy="12" r="10" />
-										</svg>
-									</a>
-								</li>
-							))}
+							<li>
+								<a
+									href="#"
+									aria-label="Facebook"
+									className="transition hover:text-green-600 dark:hover:text-green-400"
+								>
+									<Facebook size={20} />
+								</a>
+							</li>
+							<li>
+								<a
+									href="#"
+									aria-label="Instagram"
+									className="transition hover:text-green-600 dark:hover:text-green-400"
+								>
+									<Instagram size={20} />
+								</a>
+							</li>
+							<li>
+								<a
+									href="#"
+									aria-label="LinkedIn"
+									className="transition hover:text-green-600 dark:hover:text-green-400"
+								>
+									<Linkedin size={20} />
+								</a>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -127,8 +126,8 @@ export default function FooterComponent() {
 				{/* Bottom bar */}
 				<div
 					className="mt-10 border-t border-neutral-200 pt-6 text-sm text-neutral-600 
-                        dark:border-white/10 dark:text-white/70 
-                        sm:flex sm:items-center sm:justify-between"
+							dark:border-white/10 dark:text-white/70 
+							sm:flex sm:items-center sm:justify-between"
 				>
 					<p>© {new Date().getFullYear()} Zeth Care. Alle rettigheder forbeholdes.</p>
 					<div className="mt-4 sm:mt-0 flex gap-4">
