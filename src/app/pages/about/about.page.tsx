@@ -1,6 +1,6 @@
 import { motion, cubicBezier, type Variants } from 'framer-motion';
 import { ShieldCheck, Home, Trees, Users, Moon, ClipboardCheck } from 'lucide-react';
-import { Waves, Footprints, Utensils, Brush, ShoppingCart, Palette, Gamepad2 } from 'lucide-react';
+import { Waves, Footprints, Utensils, Brush, ShoppingCart, Palette } from 'lucide-react';
 const EASE = cubicBezier(0.22, 1, 0.36, 1);
 
 const lines: Variants = {
