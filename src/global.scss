@@ -33,8 +33,39 @@ input:-webkit-autofill:active {
 
 body {
 	font-family: 'Space Grotesk', sans-serif;
+	margin: 0;
 }
 
 html {
 	scroll-behavior: smooth;
+}
+/* --- Global overflow guard --- */
+html,
+body,
+#root {
+	width: 100%;
+	max-width: 100%;
+	overflow-x: hidden; /* Stop horizontal scroll */
+}
+
+#root {
+	position: relative;
+	min-height: 100%;
+}
+
+/* Media elements never overflow their container */
+img,
+video,
+svg,
+canvas {
+	max-width: 100%;
+	height: auto;
+	display: block;
+}
+
+/* Optional Tailwind utility to clip overflow-x cleanly */
+@layer utilities {
+	.overflow-x-clip {
+		overflow-x: clip;
+	}
 }
