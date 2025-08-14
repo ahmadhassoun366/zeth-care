@@ -372,11 +372,11 @@ export default function HeaderComponent() {
 									className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-neutral-200/60 bg-white/70 text-neutral-700 transition hover:bg-white
                              dark:border-neutral-700/60 dark:bg-neutral-800/70 dark:text-neutral-200 dark:hover:bg-neutral-800"
 								>
-									<i
-										className={`fas fa-${
-											theme === 'light' ? 'moon' : 'sun-bright'
-										}`}
-									/>
+									{theme === 'light' ? (
+										<Moon size={18} strokeWidth={2} />
+									) : (
+										<Sun size={18} strokeWidth={2} />
+									)}
 								</button>
 							</div>
 						</div>
