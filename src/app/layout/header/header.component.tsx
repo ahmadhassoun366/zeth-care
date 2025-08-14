@@ -14,6 +14,7 @@ import {
 	safePolygon,
 	FloatingPortal,
 } from '@floating-ui/react';
+import { ChevronDown, HandHeart, Menu, Moon, Sun, X } from 'lucide-react'; // ⬅ Lucide import
 
 import Button from 'src/components/internal/button/button.component';
 import GeneralSettingsService from 'src/shared/services/general-settings/general-settings.service';
@@ -172,7 +173,7 @@ export default function HeaderComponent() {
 					{/* Brand */}
 					<Link to="/" className="flex items-center gap-3">
 						<span className="grid place-items-center h-9 w-9 rounded-xl bg-gradient-to-tr from-green-600 to-emerald-500 text-white shadow-lg shadow-emerald-600/25">
-							<i className="fa-solid fa-hands-holding-heart" />
+							<HandHeart size={18} strokeWidth={2.5} />
 						</span>
 						<span className="hidden text-sm font-semibold text-neutral-900 sm:inline dark:text-white">
 							Zeth Care
@@ -250,7 +251,11 @@ export default function HeaderComponent() {
 							onClick={toggleTheme}
 							aria-label="Toggle theme"
 						>
-							<i className={`fas fa-${theme === 'light' ? 'moon' : 'sun-bright'}`} />
+							{theme === 'light' ? (
+								<Moon size={18} strokeWidth={2} />
+							) : (
+								<Sun size={18} strokeWidth={2} />
+							)}
 						</button>
 
 						<button
@@ -262,7 +267,11 @@ export default function HeaderComponent() {
 							onClick={toggleMobileNav}
 						>
 							<span className="sr-only">Open menu</span>
-							<i className={`fa-solid ${mobileNavOpen ? 'fa-xmark' : 'fa-bars'}`} />
+							{mobileNavOpen ? (
+								<X size={20} strokeWidth={2} />
+							) : (
+								<Menu size={20} strokeWidth={2} />
+							)}
 						</button>
 					</div>
 				</div>
@@ -291,7 +300,11 @@ export default function HeaderComponent() {
 							<details className="group rounded-lg">
 								<summary className="flex cursor-pointer list-none items-center justify-between rounded-lg px-3 py-2 text-neutral-800 hover:bg-neutral-50 dark:text-neutral-200 dark:hover:bg-neutral-800">
 									Services
-									<i className="fa-regular fa-angle-down transition-transform group-open:rotate-180" />
+									<ChevronDown
+										size={18}
+										strokeWidth={2}
+										className="transition-transform group-open:rotate-180"
+									/>
 								</summary>
 								<div className="mt-1 space-y-1 pl-3">
 									{mobileCols.services.items.map((it) => (
@@ -319,7 +332,11 @@ export default function HeaderComponent() {
 							<details className="group rounded-lg">
 								<summary className="flex cursor-pointer list-none items-center justify-between rounded-lg px-3 py-2 text-neutral-800 hover:bg-neutral-50 dark:text-neutral-200 dark:hover:bg-neutral-800">
 									About us
-									<i className="fa-regular fa-angle-down transition-transform group-open:rotate-180" />
+									<ChevronDown
+										size={18}
+										strokeWidth={2}
+										className="transition-transform group-open:rotate-180"
+									/>
 								</summary>
 								<div className="mt-1 space-y-1 pl-3">
 									{mobileCols.about.items.map((it) => (
