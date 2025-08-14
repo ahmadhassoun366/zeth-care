@@ -15,8 +15,6 @@ import AppInit from '../components/app-init/app-init.component';
 // pages
 import DiscoverPage from './pages/discover/discover.page';
 import DashboardPage from './pages/dashboard/dashboard.page';
-import NetworkDetailsPage from './pages/networks/details/network-details.page';
-import CreateNetworkPage from './pages/networks/create/create-network.page';
 
 // import RootPage from './pages/root-page.tsx';
 // import DesignerPage from './pages/designer-page.tsx';
@@ -45,7 +43,6 @@ import '../global.scss';
 import APP_MODALS from '../static/enums/app.modals';
 import { THEMES } from '../static/settings/general-settings.data';
 import NotFoundPage from './pages/404/404-page.tsx';
-import OAuthPage from './pages/oauth/oauth.page.tsx';
 // *~~~ lazy loaded pages ~~~*
 
 // pages
@@ -116,11 +113,6 @@ function RoutingComponent() {
 						}
 					/> */}
 
-					<Route path={ROUTES.networks.details} element={<NetworkDetailsPage />} />
-					<Route path={ROUTES.networks.create} element={<CreateNetworkPage />} />
-
-					<Route path={ROUTES.oauth.login} element={<OAuthPage />} />
-
 					{/* <Route path={ROUTES.dashboard.root} element={<Dashboard />} />
 					<Route path={ROUTES?.l1?.root} element={<L1Single />} /> */}
 
@@ -149,9 +141,7 @@ function AppModals() {
 		[APP_MODALS.DEPLOYMENT_IN_PROGRESS_MODAL]: lazy(
 			() => import('../components/modals/launch/deployment-progress.modal')
 		),
-		[APP_MODALS.LOGIN_MODAL_DISCOVER_BUTTON]: lazy(
-			() => import('../app/pages/route-protection-page/route-protection-page.tsx')
-		),
+
 		[APP_MODALS.DEPLOYMENT_SUCCESS_MODAL]: lazy(
 			() => import('../components/modals/launch/deployment-success.modal')
 		),

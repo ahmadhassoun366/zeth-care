@@ -14,9 +14,7 @@ export default class AuthService {
 	private authenticated: Signal<boolean> = signal(false);
 	private provider: Signal<AuthProvider | null> = signal(null);
 
-	constructor(private appStorage: AppStorage) {
-		this.onGoogleAuthCallback = this.onGoogleAuthCallback.bind(this);
-	}
+	constructor(private appStorage: AppStorage) {}
 
 	async init(): Promise<void> {
 		await this.restoreSession();
@@ -122,11 +120,5 @@ export default class AuthService {
 			this.logout();
 			return false;
 		}
-	}
-
-	public onGoogleAuthCallback(response: { credential: string }): void {
-		// this.googleLogin(response.credential);
-		// const token = response.credential;
-		// if (import.meta.env.VITE_APP_ENV === 'dev') console.log(response.credential);
 	}
 }
