@@ -43,6 +43,7 @@ import '../global.scss';
 import APP_MODALS from '../static/enums/app.modals';
 import { THEMES } from '../static/settings/general-settings.data';
 import NotFoundPage from './pages/404/404-page.tsx';
+import About from './pages/about/about.page.tsx';
 // *~~~ lazy loaded pages ~~~*
 
 // pages
@@ -101,20 +102,8 @@ function RoutingComponent() {
 
 					{/* root page  */}
 					<Route path={ROUTES.root} element={<Navigate to={ROUTES.discover.root} />} />
-
+					<Route path={ROUTES.about} element={<About />} />
 					<Route path={ROUTES.dashboard.root} element={<DashboardPage />} />
-					{/* <Route
-						path={ROUTES.protectionPage}
-						element={
-							<ProtectionPage
-								modalId={APP_MODALS.LOGIN_MODAL_DISCOVER_BUTTON}
-								data={null}
-							/>
-						}
-					/> */}
-
-					{/* <Route path={ROUTES.dashboard.root} element={<Dashboard />} />
-					<Route path={ROUTES?.l1?.root} element={<L1Single />} /> */}
 
 					{/* 404 */}
 					<Route path="*" element={<NotFoundPage />} />

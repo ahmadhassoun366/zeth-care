@@ -19,6 +19,7 @@ import { ChevronDown, HandHeart, Menu, Moon, Sun, X } from 'lucide-react'; // �
 import Button from 'src/components/internal/button/button.component';
 import GeneralSettingsService from 'src/shared/services/general-settings/general-settings.service';
 import geneneralSettingsSvcContext from 'src/shared/services/general-settings/general-settings.context';
+import ROUTES from 'src/static/router.data';
 
 // ——— NAV DATA ——— //
 const navMain = [
@@ -215,16 +216,25 @@ export default function HeaderComponent() {
 								</Link>
 							</li>
 
-							{/* About us */}
-							<NavDropdown
+							{/* <NavDropdown
 								label="About us"
 								items={[
 									{ label: 'Om Tryglund', href: '/om' },
 									{ label: 'Målgruppe & faglighed', href: '/om#maalgruppe' },
 								]}
 								isActive={isActive('/om')}
-							/>
-
+							/> */}
+							{/* About us */}
+							<li>
+								<Link
+									className={`nav-link ${
+										isActive('/tilgange') ? 'is-active' : ''
+									}`}
+									to={ROUTES.about}
+								>
+									Om os
+								</Link>
+							</li>
 							{/* Job */}
 							<li>
 								<Link
