@@ -14,7 +14,7 @@ const line: Variants = {
 
 export default function About() {
 	return (
-		<main className="relative overflow-hidden">
+		<main className="relative overflow-hidden py-20">
 			{/* Top banner */}
 			<section className="relative bg-gradient-to-b from-gray-50 to-white dark:from-neutral-950 dark:to-neutral-900 py-16 lg:py-24">
 				{/* soft background blobs */}
@@ -43,7 +43,7 @@ export default function About() {
 						<span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-xs font-medium tracking-wider text-green-800 ring-1 ring-green-600/20 backdrop-blur dark:bg-white/10 dark:text-green-300 dark:ring-green-500/20">
 							Tryglund
 							<span className="h-1 w-1 rounded-full bg-green-700 dark:bg-green-300" />
-							– Enkeltmandsprojekt
+							Enkeltmandsprojekt
 						</span>
 
 						<motion.h1
@@ -71,9 +71,10 @@ export default function About() {
 							viewport={{ once: true, amount: 0.55 }}
 							transition={{ duration: 0.45, ease: EASE }}
 						>
-							Tryglund er et enkeltmandsprojekt med base i et trygt og naturskønt
-							sommerhusmiljø – målrettet borgere med komplekse behov, der har brug for
-							en helhedsorienteret, intensiv og skræddersyet pædagogisk indsats jf.
+							<span className="font-extrabold text-xl text-black">Tryglund</span> er
+							et enkeltmandsprojekt med base i et trygt og naturskønt sommerhusmiljø –
+							målrettet borgere med komplekse behov, der har brug for en
+							helhedsorienteret, intensiv og skræddersyet pædagogisk indsats jf.
 							Barnets Lov. Når traditionelle tilbud kommer til kort, skaber vi et
 							alternativt rum for udvikling og stabilisering, hvor relation, struktur
 							og aktivitet er de bærende elementer.
@@ -145,11 +146,14 @@ export default function About() {
 						viewport={{ once: true, amount: 0.4 }}
 						transition={{ duration: 0.5, ease: EASE }}
 					>
-						<div className="absolute inset-0 grid place-items-center bg-gradient-to-br from-green-600/10 via-emerald-600/10 to-lime-600/10 dark:from-green-600/15 dark:via-emerald-600/15 dark:to-lime-600/15">
-							<span className="text-sm text-neutral-500 dark:text-neutral-400">
-								Billede af sommerhusmiljø / aktivitet
-							</span>
-						</div>
+						{/* Replace placeholder with image */}
+						<img
+							src="/media/images/aboutus.png" // your optimized image path
+							alt="Tryglund – støtte og udvikling i trygge rammer"
+							className="absolute inset-0 h-full w-full object-cover"
+						/>
+
+						{/* Floating label stays */}
 						<motion.div
 							className="absolute right-4 top-4 rounded-full bg-white/80 px-3 py-1 text-xs font-medium text-neutral-700 backdrop-blur dark:bg-neutral-800/80 dark:text-neutral-100"
 							animate={{ y: [0, -4, 0] }}
