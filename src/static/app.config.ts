@@ -2,7 +2,7 @@
  * This files store the configuration of the app
  */
 const AppConfig = {
-	name: 'L1 Portal',
+	name: 'Zeth Care',
 	version: '1.0.0',
 	description: 'Description of the app',
 	favIcon: '/assets/images/favicon.png',
