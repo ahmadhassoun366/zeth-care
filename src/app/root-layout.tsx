@@ -102,7 +102,7 @@ function RoutingComponent() {
 
 					{/* root page  */}
 					<Route path={ROUTES.root} element={<Navigate to={ROUTES.discover.root} />} />
-					<Route path={ROUTES.about} element={<About />} />
+					<Route path={ROUTES.omos} element={<About />} />
 					<Route path={ROUTES.dashboard.root} element={<DashboardPage />} />
 
 					{/* 404 */}

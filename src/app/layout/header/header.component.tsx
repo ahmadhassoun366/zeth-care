@@ -188,15 +188,15 @@ export default function HeaderComponent() {
 							<li>
 								<Link
 									className={`nav-link ${isActive('/') ? 'is-active' : ''}`}
-									to="/"
+									to={ROUTES.root}
 								>
-									Front
+									Forside
 								</Link>
 							</li>
 
-							{/* Services */}
+							{/* Indsatser */}
 							<NavDropdown
-								label="Services"
+								label="Indsatser"
 								items={[
 									{ label: 'Indsats-pakken', href: '/indsatser#indsats' },
 									{ label: 'Trygheds-pakken', href: '/indsatser#tryghed' },
@@ -204,15 +204,15 @@ export default function HeaderComponent() {
 								isActive={isActive('/indsatser')}
 							/>
 
-							{/* Approaches & methods */}
+							{/* Tilgange & metoder */}
 							<li>
 								<Link
 									className={`nav-link ${
 										isActive('/tilgange') ? 'is-active' : ''
 									}`}
-									to="/tilgange"
+									to={ROUTES.tilgange}
 								>
-									Approaches and methods
+									Tilgange & metoder
 								</Link>
 							</li>
 
@@ -230,7 +230,7 @@ export default function HeaderComponent() {
 									className={`nav-link ${
 										isActive('/tilgange') ? 'is-active' : ''
 									}`}
-									to={ROUTES.about}
+									to={ROUTES.omos}
 								>
 									Om os
 								</Link>
@@ -239,7 +239,7 @@ export default function HeaderComponent() {
 							<li>
 								<Link
 									className={`nav-link ${isActive('/job') ? 'is-active' : ''}`}
-									to="/job"
+									to={ROUTES.job}
 								>
 									Job
 								</Link>
@@ -251,7 +251,7 @@ export default function HeaderComponent() {
 					<div className="flex items-center gap-3">
 						<Link to="/kontakt" className="hidden sm:block">
 							<Button className="green small rounded-full px-5">
-								Contact & Visitation
+								Kontakt & Visitation
 							</Button>
 						</Link>
 
@@ -303,13 +303,13 @@ export default function HeaderComponent() {
 								className="block rounded-lg px-3 py-2 text-neutral-800 hover:bg-neutral-50 dark:text-neutral-200 dark:hover:bg-neutral-800"
 								onClick={toggleMobileNav}
 							>
-								Front
+								Forside
 							</Link>
 
-							{/* Services collapsible */}
+							{/* Indsatser collapsible */}
 							<details className="group rounded-lg">
 								<summary className="flex cursor-pointer list-none items-center justify-between rounded-lg px-3 py-2 text-neutral-800 hover:bg-neutral-50 dark:text-neutral-200 dark:hover:bg-neutral-800">
-									Services
+									Indsatser
 									<ChevronDown
 										size={18}
 										strokeWidth={2}
@@ -335,13 +335,13 @@ export default function HeaderComponent() {
 								className="block rounded-lg px-3 py-2 text-neutral-800 hover:bg-neutral-50 dark:text-neutral-200 dark:hover:bg-neutral-800"
 								onClick={toggleMobileNav}
 							>
-								Approaches and methods
+								Tilgange & metoder
 							</Link>
 
-							{/* About collapsible */}
+							{/* Om os collapsible */}
 							<details className="group rounded-lg">
 								<summary className="flex cursor-pointer list-none items-center justify-between rounded-lg px-3 py-2 text-neutral-800 hover:bg-neutral-50 dark:text-neutral-200 dark:hover:bg-neutral-800">
-									About us
+									Om os
 									<ChevronDown
 										size={18}
 										strokeWidth={2}
@@ -373,7 +373,7 @@ export default function HeaderComponent() {
 							<div className="mt-3 flex items-center gap-3">
 								<Link to="/kontakt" onClick={toggleMobileNav}>
 									<Button className="green small rounded-full px-5">
-										Contact & Visitation
+										Kontakt & Visitation
 									</Button>
 								</Link>
 								<button

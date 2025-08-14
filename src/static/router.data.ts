@@ -1,7 +1,8 @@
 const ROUTES = {
 	root: '/',
-	about: '/about',
-
+	omos: '/omos',
+	tilgange: '/tilgange',
+	job: '/job',
 	dashboard: {
 		root: '/dashboard',
 	},
