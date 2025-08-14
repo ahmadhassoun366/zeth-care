@@ -11,7 +11,6 @@ import { ArrowRight, CheckCircle2, Phone } from 'lucide-react';
 import { useRef } from 'react';
 
 const features = [
-	'Vi rykker hurtigt ud ved behov',
 	'Medarbejdere med høj faglighed og erfaring',
 	'Fleksible løsninger – tryghed for borger og personale',
 	'24/7 tilgængelighed hele året',
@@ -111,7 +110,7 @@ export default function Hero() {
 							className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-xs font-medium tracking-wider text-green-800 ring-1 ring-green-600/20 backdrop-blur dark:bg-white/10 dark:text-green-300 dark:ring-green-500/20"
 							variants={fadeUp}
 						>
-							 Tryglund
+							Tryglund
 							<span className="h-1 w-1 rounded-full bg-green-700 dark:bg-green-300" />
 							Professionel omsorg
 						</motion.div>
