@@ -8,7 +8,7 @@ export default function HeaderFooterLayout() {
 			{/* *~~*~~*~~ LAYOUT ~~*~~*~~* */}
 			<HeaderComponent />
 
-			<div id="header-offset" className="h-headerP" />
+			{/* <div id="header-offset" className="h-headerP" /> */}
 
 			<div className=" min-h-screen-2    ">
 				<Outlet />

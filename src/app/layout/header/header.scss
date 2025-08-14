@@ -92,3 +92,20 @@
 	@apply pointer-events-none;
 	@apply select-none;
 }
+
+/* tailwind.css (or a global CSS file loaded by your app) */
+.nav-link {
+	@apply relative text-sm font-medium text-neutral-700 transition-colors hover:text-neutral-900
+         dark:text-neutral-200 dark:hover:text-white;
+}
+.nav-link::after {
+	content: '';
+	@apply absolute -bottom-1 left-0 h-0.5 w-0 bg-gradient-to-r from-green-600 to-emerald-500 transition-all duration-200;
+}
+.nav-link:hover::after,
+.nav-link.is-active::after {
+	@apply w-full;
+}
+.nav-link.is-active {
+	@apply text-neutral-900 dark:text-white;
+}

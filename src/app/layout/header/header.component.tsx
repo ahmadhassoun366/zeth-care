@@ -1,291 +1,376 @@
 import { Link, useLocation } from 'react-router-dom';
-import { useContext, useState } from 'react';
+import { useContext, useMemo, useState } from 'react';
+import {
+	autoUpdate,
+	flip,
+	offset,
+	shift,
+	useClick,
+	useDismiss,
+	useFloating,
+	useHover,
+	useInteractions,
+	useRole,
+	safePolygon,
+	FloatingPortal,
+} from '@floating-ui/react';
 
-import { offset, useClick, useDismiss, useFloating, useInteractions } from '@floating-ui/react';
-
-// components
 import Button from 'src/components/internal/button/button.component';
-import PwrImagotipo from 'src/components/logos/pwr-imagotipo/pwr-imagotipo.logo';
-
-// services
 import GeneralSettingsService from 'src/shared/services/general-settings/general-settings.service';
 import geneneralSettingsSvcContext from 'src/shared/services/general-settings/general-settings.context';
-import UserService from 'src/shared/services/user/user.service';
-import UserSvcContext from 'src/shared/services/user/user.context';
-import ModalService from 'src/shared/services/modal/modal.service';
-import ModalSvcContext from 'src/shared/services/modal/modal.context';
-import AuthSvcContext from 'src/shared/services/auth/auth.context';
-import AuthService from 'src/shared/services/auth/auth.service';
 
-import { useDefaultUserImg } from 'src/shared/utils/functions';
-
-import ROUTES from 'src/static/router.data';
-import APP_MODALS from 'src/static/enums/app.modals';
-import ProfileDropdown from './profile-dropdown';
-
-const navBttns = [
-	{ label: 'Discover', href: '/discover' },
-	{ label: 'Dashboard', href: '/dashboard' },
+// ——— NAV DATA ——— //
+const navMain = [
+	{ label: 'Front', href: '/' },
+	{
+		label: 'Services',
+		type: 'dropdown' as const,
+		items: [
+			{ label: 'Indsats-pakken', href: '/indsatser#indsats' },
+			{ label: 'Trygheds-pakken', href: '/indsatser#tryghed' },
+		],
+	},
+	{ label: 'Approaches and methods', href: '/tilgange' },
+	{
+		label: 'About us',
+		type: 'dropdown' as const,
+		items: [
+			{ label: 'Om Zeth Care', href: '/om' },
+			{ label: 'Målgruppe & faglighed', href: '/om#maalgruppe' },
+		],
+	},
+	{ label: 'Job', href: '/job' },
 ];
 
-export default function HeaderComponent() {
-	// *~~~ inject dependencies ~~~* //
+/* =======================
+   Reusable Dropdown
+   ======================= */
+type DropdownProps = {
+	label: string;
+	items: { label: string; href: string }[];
+	isActive?: boolean;
+};
 
-	const authSvc = useContext<AuthService>(AuthSvcContext);
-	const userSvc = useContext<UserService>(UserSvcContext);
-	const modalSvc = useContext<ModalService>(ModalSvcContext);
+function NavDropdown({ label, items, isActive }: DropdownProps) {
+	const [open, setOpen] = useState(false);
 
-	// const navigate = useNavigate();
-	const { pathname } = useLocation();
-
-	const [mobileNavOpen, setMobileNavOpen] = useState(false);
-
-	const toggleMobileNav = () => {
-		setMobileNavOpen(!mobileNavOpen);
-		const html = document.querySelector('html');
-
-		if (mobileNavOpen) {
-			html?.classList.remove('overflow-hidden');
-		} else {
-			html?.classList.add('overflow-hidden');
-		}
-	};
-
-	// #region dropdown
-	const [profileIsOpen, setProfileIsOpen] = useState(false);
-
-	const { refs, floatingStyles, context } = useFloating({
-		open: profileIsOpen,
-		onOpenChange: setProfileIsOpen,
-		placement: 'bottom',
-		middleware: [offset(10)],
+	const floating = useFloating({
+		open,
+		onOpenChange: setOpen,
+		placement: 'bottom-start',
+		strategy: 'fixed', // 👈 add this
+		whileElementsMounted: autoUpdate,
+		middleware: [offset(10), flip({ padding: 10 }), shift({ padding: 10 })],
 	});
 
-	const dismiss = useDismiss(context);
-	const click = useClick(context);
+	// hover + click + escape/outside + role (menu)
+	const hover = useHover(floating.context, {
+		move: true,
+		handleClose: safePolygon({ requireIntent: true }),
+		delay: { open: 40, close: 80 },
+	});
+	const click = useClick(floating.context, { toggle: true, event: 'mousedown' });
+	const dismiss = useDismiss(floating.context);
+	const role = useRole(floating.context, { role: 'menu' });
 
-	const { getReferenceProps, getFloatingProps } = useInteractions([click, dismiss]);
-
-	// #endregion
-
-	// *~~~ Theme ~~~* //
-	const settingsSvc = useContext<GeneralSettingsService>(geneneralSettingsSvcContext);
-
-	function toggleTheme() {
-		settingsSvc.toggleTheme();
-	}
-
-	function openLoginModal() {
-		modalSvc.open(APP_MODALS.LOGIN_MODAL, null);
-		// modalSvc.open(APP_MODALS.LOGIN_MODAL_DISCOVER_BUTTON, null);
-	}
-
-	function logout() {
-		authSvc.logout();
-	}
-
-	function closeCallback() {
-		setProfileIsOpen(false);
-	}
+	const { getReferenceProps, getFloatingProps } = useInteractions([hover, click, dismiss, role]);
 
 	return (
-		<nav className="fixed  bg-opacity-5 top-0 left-0 w-full z-header transparent py-5 ">
-			<div className="container-3 mx-auto !py-0">
-				<div className="bg-white dark:bg-dark-800 shadow-lg rounded-[30px] px-[50px] h-header">
-					{/* desktop */}
-					<div className="flex justify-between items-center  w-full h-full ">
-						{/* brand */}
-						<Link to={ROUTES.root} className="brand">
-							<PwrImagotipo />
-						</Link>
+		<li className="relative">
+			<button
+				ref={floating.refs.setReference}
+				{...getReferenceProps()}
+				className={`nav-link inline-flex items-center gap-2 ${isActive ? 'is-active' : ''}`}
+				aria-expanded={open}
+				aria-haspopup="menu"
+			>
+				{label}
+				<i
+					className={`fa-regular fa-angle-down transition-transform duration-200 ${
+						open ? 'rotate-180' : ''
+					}`}
+				/>
+			</button>
 
-						{/* navbar links */}
-						<div className="hidden md:flex items-center gap-x-6 ">
-							{/* link con */}
-							<ul className="flex items-center gap-x-6">
-								{/* {userSvc.isAdmin() && (
-								<li>
-									<Link
-										to={ROUTES.dashboard.root}
-										className={`navbar-link ${
-											pathname.includes('dashboard') ? 'active' : ''
-										}`}
-									>
-										Dashboard
-									</Link>
-								</li>
-							)} */}
-								{navBttns.map((nav, idx) => (
-									<li key={idx}>
-										<Link
-											to={nav.href}
-											className={`navbar-link ${pathname.includes(nav.href) ? 'active' : ''
-												}`}
-										>
-											{nav.label}
-										</Link>
-									</li>
-								))}
-							</ul>
-						</div>
+			<FloatingPortal>
+				{open && (
+					<div
+						ref={floating.refs.setFloating}
+						style={floating.floatingStyles}
+						{...getFloatingProps()}
+						className="z-[9999] min-w-[240px] overflow-hidden rounded-xl border border-neutral-200/60 bg-white/95 p-2 shadow-xl ring-1 ring-black/5 backdrop-blur-sm
+                 dark:border-neutral-700/60 dark:bg-neutral-900/95 dark:ring-white/5"
+					>
+						{items.map((it) => (
+							<Link
+								key={it.href}
+								to={it.href}
+								className="block rounded-lg px-3 py-2 text-sm text-neutral-800 hover:bg-neutral-50 hover:text-neutral-900
+                     focus:bg-neutral-50 focus:outline-none dark:text-neutral-200 dark:hover:bg-neutral-800 dark:hover:text-white"
+								onClick={() => setOpen(false)}
+								role="menuitem"
+							>
+								{it.label}
+							</Link>
+						))}
+					</div>
+				)}
+			</FloatingPortal>
+		</li>
+	);
+}
 
-						{/* user */}
-						<div className="hidden md:flex items-center gap-x-6 ">
-							{authSvc.isLoggedIn() ? (
-								<>
-									<button
-										id="profile-dropdown-button"
-										className="w-[80px] p-2 bg-gray-100 dark:bg-gray-900 rounded-xl justify-start items-center gap-x-2 flex"
-										{...getReferenceProps()}
-										ref={refs.setReference}
-									>
-										<img
-											alt="Profile"
-											className="w-11 h-11 rounded-full transition-transform duration-300 hover:scale-110 hover:shadow-lg"
-											onError={useDefaultUserImg}
-											src={userSvc.getUserData().pfp}
-										/>
+/* =======================
+   Header
+   ======================= */
+export default function HeaderComponent() {
+	const { pathname } = useLocation();
 
-										<div className="dark:text-white text-gray-900">
-											<i
-												className="fa-regular fa-angle-down transition-transform duration-200"
-												style={{
-													transform: profileIsOpen
-														? 'rotate(180deg)'
-														: '',
-												}}
-											/>
-										</div>
-									</button>
+	// Theme service
+	const settingsSvc = useContext<GeneralSettingsService>(geneneralSettingsSvcContext);
+	const toggleTheme = () => settingsSvc.toggleTheme();
+	const theme = settingsSvc.getTheme();
 
-									{profileIsOpen && (
-										<div
-											className="aabsolute aright-1.5 atop-16 z-header_profile"
-											ref={refs.setFloating}
-											style={floatingStyles}
-											{...getFloatingProps()}
-										>
-											<ProfileDropdown closeCallback={closeCallback} />
-										</div>
-									)}
-									{/* <Link to={'/'}>
-										<img
-											alt="Profile"
-											className="w-11 h-11 rounded-full transition-transform duration-300 hover:scale-110 hover:shadow-lg"
-											onError={useDefaultUserImg}
-											src={userSvc.getUserData().pfp}
-										/>
-									</Link> */}
-									<Link to={ROUTES.networks.create}>
-										<Button className="blue small hover:scale-105 transition duration-300 ease-in-out">
-											Lauch L1
-										</Button>
-									</Link>
-								</>
-							) : (
-								<Button
-									className="blue small hover:scale-105 transition duration-300 ease-in-out"
-									onClick={openLoginModal}
-									data-testid="login-btn"
+	// Mobile menu
+	const [mobileNavOpen, setMobileNavOpen] = useState(false);
+	const toggleMobileNav = () => {
+		setMobileNavOpen((v) => {
+			const next = !v;
+			const html = document.querySelector('html');
+			if (!next) html?.classList.remove('overflow-hidden');
+			else html?.classList.add('overflow-hidden');
+			return next;
+		});
+	};
+
+	const isActive = (href: string) =>
+		href === '/' ? pathname === '/' : pathname.startsWith(href);
+
+	// Split columns for mobile collapsibles
+	const mobileCols = useMemo(
+		() => ({
+			services: navMain.find((n) => n.label === 'Services') as Extract<
+				(typeof navMain)[number],
+				{ type: 'dropdown' }
+			>,
+			about: navMain.find((n) => n.label === 'About us') as Extract<
+				(typeof navMain)[number],
+				{ type: 'dropdown' }
+			>,
+		}),
+		[]
+	);
+
+	return (
+		<nav className="fixed inset-x-0 top-0 z-header">
+			{/* translucent bar */}
+			<div className="mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
+				<div
+					className="mt-4 flex h-16 items-center justify-between rounded-2xl border border-neutral-200/50 bg-white/70 px-5 shadow-md backdrop-blur-md
+                     dark:border-neutral-700/60 dark:bg-neutral-900/70"
+				>
+					{/* Brand */}
+					<Link to="/" className="flex items-center gap-3">
+						<span className="grid place-items-center h-9 w-9 rounded-xl bg-gradient-to-tr from-green-600 to-emerald-500 text-white shadow-lg shadow-emerald-600/25">
+							<i className="fa-solid fa-hands-holding-heart" />
+						</span>
+						<span className="hidden text-sm font-semibold text-neutral-900 sm:inline dark:text-white">
+							Zeth Care
+						</span>
+					</Link>
+
+					{/* Desktop Nav */}
+					<div className="hidden md:block">
+						<ul className="flex items-center gap-6">
+							{/* Front */}
+							<li>
+								<Link
+									className={`nav-link ${isActive('/') ? 'is-active' : ''}`}
+									to="/"
 								>
-									Login/Singup
-								</Button>
-							)}
-
-							<button
-								className="theme_btn text-agrey-500 dark:text-white"
-								onClick={toggleTheme}
-							>
-								<div className="dark:text-white">
-									<i
-										className={`fa-if fas fa-${settingsSvc.getTheme() === 'light'
-												? 'moon '
-												: 'sun-bright'
-											}`}
-									></i>
-								</div>
-							</button>
-						</div>
-
-						<div className="burger-button md:hidden flex">
-							{authSvc.isLoggedIn() && (
-								<Link to={'/'}>
-									<img
-										src={userSvc.getUserData().pfp}
-										alt=""
-										className="w-8 h-8 rounded-full mr-4"
-									/>
+									Front
 								</Link>
-							)}
+							</li>
 
-							{/* This is a simple burger icon. You can replace this with any SVG or icon library you prefer. */}
-							<button
-								data-collapse-toggle="navbar-sticky"
-								type="button"
-								className={`burger ${mobileNavOpen ? 'active' : ''}`}
-								aria-controls="navbar-sticky"
-								aria-expanded="true"
-								onClick={toggleMobileNav}
-							>
-								<div className="h-line h-line1 dark:bg-white"></div>
-								<div className="h-line h-line2 dark:bg-white"></div>
-								<div className="h-line h-line3 dark:bg-white"></div>
-							</button>
-						</div>
+							{/* Services */}
+							<NavDropdown
+								label="Services"
+								items={[
+									{ label: 'Indsats-pakken', href: '/indsatser#indsats' },
+									{ label: 'Trygheds-pakken', href: '/indsatser#tryghed' },
+								]}
+								isActive={isActive('/indsatser')}
+							/>
+
+							{/* Approaches & methods */}
+							<li>
+								<Link
+									className={`nav-link ${
+										isActive('/tilgange') ? 'is-active' : ''
+									}`}
+									to="/tilgange"
+								>
+									Approaches and methods
+								</Link>
+							</li>
+
+							{/* About us */}
+							<NavDropdown
+								label="About us"
+								items={[
+									{ label: 'Om Zeth Care', href: '/om' },
+									{ label: 'Målgruppe & faglighed', href: '/om#maalgruppe' },
+								]}
+								isActive={isActive('/om')}
+							/>
+
+							{/* Job */}
+							<li>
+								<Link
+									className={`nav-link ${isActive('/job') ? 'is-active' : ''}`}
+									to="/job"
+								>
+									Job
+								</Link>
+							</li>
+						</ul>
 					</div>
 
-					{/* mobile */}
-					<div className="flex justify-center">
-						{/* <SideProfile isOpen={isProfileOpen} closeProfile={toggleProfile} /> */}
+					{/* Right: CTA + Theme + Burger */}
+					<div className="flex items-center gap-3">
+						<Link to="/kontakt" className="hidden sm:block">
+							<Button className="green small rounded-full px-5">
+								Contact & Visitation
+							</Button>
+						</Link>
 
-						{/* Mobile navigation menu */}
-						{mobileNavOpen && (
-							<div className="transition-opacity duration-300 ease-in opacity-100 shadow-bottom absolute top-13 mt-[-23px]    w-[92%] rounded-bl-2xl rounded-br-2xl shadow-bl-2xl dark:bg-abrandc-dark-blackish bg-white  p-4 flex flex-col items-center space-y-6">
-								{/* links */}
-								<div className="space-y-9 mt-5 ">
-									<div className="">
-										<Link
-											to={'/'}
-											className="text-center  font-medium text-agrey-900 dark:text-white flex items-center gap-x-2 "
-										>
-											<div>Projects</div>
-										</Link>
-									</div>
+						<button
+							className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-neutral-200/60 bg-white/70 text-neutral-700 transition hover:bg-white
+                         dark:border-neutral-700/60 dark:bg-neutral-800/70 dark:text-neutral-200 dark:hover:bg-neutral-800"
+							onClick={toggleTheme}
+							aria-label="Toggle theme"
+						>
+							<i className={`fas fa-${theme === 'light' ? 'moon' : 'sun-bright'}`} />
+						</button>
 
-									<div className="">
-										<Link
-											to="/"
-											className=" justify-center font-medium text-agrey-900 dark:text-white flex items-center gap-x-2 "
-										>
-											<div>FAQs</div>
-										</Link>
-									</div>
-								</div>
-
-								{/* buttons */}
-								<div className="flex justify-between gap-4 mb-3">
-									{/* <Button className="secondary medium w-2/4">Connect</Button> */}
-
-									{authSvc.isLoggedIn() ? (
-										<>
-											<button className="navbar-link" onClick={logout}>
-												Log Out
-											</button>
-										</>
-									) : (
-										<Button
-											className="blue medium w-[117px]"
-											onClick={openLoginModal}
-										>
-											Login
-										</Button>
-									)}
-								</div>
-							</div>
-						)}
+						<button
+							type="button"
+							className="md:hidden inline-flex h-9 w-9 items-center justify-center rounded-full border border-neutral-200/60 bg-white/70 text-neutral-700 transition hover:bg-white
+                         dark:border-neutral-700/60 dark:bg-neutral-800/70 dark:text-neutral-200 dark:hover:bg-neutral-800"
+							aria-controls="mobile-menu"
+							aria-expanded={mobileNavOpen}
+							onClick={toggleMobileNav}
+						>
+							<span className="sr-only">Open menu</span>
+							<i className={`fa-solid ${mobileNavOpen ? 'fa-xmark' : 'fa-bars'}`} />
+						</button>
 					</div>
 				</div>
 			</div>
+
+			{/* Mobile menu */}
+			{mobileNavOpen && (
+				<div
+					id="mobile-menu"
+					className="md:hidden mx-auto mt-2 max-w-7xl px-4 sm:px-6 lg:px-8"
+				>
+					<div
+						className="rounded-2xl border border-neutral-200/60 bg-white/95 p-4 shadow-md ring-1 ring-black/5 backdrop-blur-sm
+                       dark:border-neutral-700/60 dark:bg-neutral-900/95 dark:ring-white/5"
+					>
+						<div className="space-y-3">
+							<Link
+								to="/"
+								className="block rounded-lg px-3 py-2 text-neutral-800 hover:bg-neutral-50 dark:text-neutral-200 dark:hover:bg-neutral-800"
+								onClick={toggleMobileNav}
+							>
+								Front
+							</Link>
+
+							{/* Services collapsible */}
+							<details className="group rounded-lg">
+								<summary className="flex cursor-pointer list-none items-center justify-between rounded-lg px-3 py-2 text-neutral-800 hover:bg-neutral-50 dark:text-neutral-200 dark:hover:bg-neutral-800">
+									Services
+									<i className="fa-regular fa-angle-down transition-transform group-open:rotate-180" />
+								</summary>
+								<div className="mt-1 space-y-1 pl-3">
+									{mobileCols.services.items.map((it) => (
+										<Link
+											key={it.href}
+											to={it.href}
+											onClick={toggleMobileNav}
+											className="block rounded-md px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-50 dark:text-neutral-300 dark:hover:bg-neutral-800"
+										>
+											{it.label}
+										</Link>
+									))}
+								</div>
+							</details>
+
+							<Link
+								to="/tilgange"
+								className="block rounded-lg px-3 py-2 text-neutral-800 hover:bg-neutral-50 dark:text-neutral-200 dark:hover:bg-neutral-800"
+								onClick={toggleMobileNav}
+							>
+								Approaches and methods
+							</Link>
+
+							{/* About collapsible */}
+							<details className="group rounded-lg">
+								<summary className="flex cursor-pointer list-none items-center justify-between rounded-lg px-3 py-2 text-neutral-800 hover:bg-neutral-50 dark:text-neutral-200 dark:hover:bg-neutral-800">
+									About us
+									<i className="fa-regular fa-angle-down transition-transform group-open:rotate-180" />
+								</summary>
+								<div className="mt-1 space-y-1 pl-3">
+									{mobileCols.about.items.map((it) => (
+										<Link
+											key={it.href}
+											to={it.href}
+											onClick={toggleMobileNav}
+											className="block rounded-md px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-50 dark:text-neutral-300 dark:hover:bg-neutral-800"
+										>
+											{it.label}
+										</Link>
+									))}
+								</div>
+							</details>
+
+							<Link
+								to="/job"
+								className="block rounded-lg px-3 py-2 text-neutral-800 hover:bg-neutral-50 dark:text-neutral-200 dark:hover:bg-neutral-800"
+								onClick={toggleMobileNav}
+							>
+								Job
+							</Link>
+
+							<div className="mt-3 flex items-center gap-3">
+								<Link to="/kontakt" onClick={toggleMobileNav}>
+									<Button className="green small rounded-full px-5">
+										Contact & Visitation
+									</Button>
+								</Link>
+								<button
+									onClick={toggleTheme}
+									aria-label="Toggle theme"
+									className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-neutral-200/60 bg-white/70 text-neutral-700 transition hover:bg-white
+                             dark:border-neutral-700/60 dark:bg-neutral-800/70 dark:text-neutral-200 dark:hover:bg-neutral-800"
+								>
+									<i
+										className={`fas fa-${
+											theme === 'light' ? 'moon' : 'sun-bright'
+										}`}
+									/>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			)}
 		</nav>
 	);
 }
+
+/* =======================
+   Tiny CSS helpers (Tailwind)
+   ======================= */
+/* Add these utilities to your global CSS if you don’t already have .nav-link */

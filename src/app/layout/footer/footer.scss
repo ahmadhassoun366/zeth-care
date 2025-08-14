@@ -1,0 +1,31 @@
+/* --- Footer + Buttons (green) --- */
+.btn-green {
+	@apply bg-green-900 text-white hover:bg-green-700 active:bg-green-950;
+}
+.btn-green:disabled {
+	@apply bg-ghostly_grey-100 text-ghostly_grey-300;
+}
+
+/* Footer surface + text */
+.footer-surface {
+	@apply bg-green-900 text-white;
+}
+
+/* Footer headings / links */
+.footer-heading {
+	@apply text-white font-semibold;
+}
+.footer-link {
+	@apply text-white/80 hover:text-white;
+}
+
+/* Divider */
+.footer-divider {
+	@apply border-white/20;
+}
+
+/* Social chip */
+.footer-chip {
+	@apply bg-green-700 text-white rounded-2xl h-[60px] w-[134px]
+         transition duration-300 hover:bg-green-600 hover:scale-105;
+}

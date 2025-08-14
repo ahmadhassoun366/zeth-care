@@ -2,16 +2,12 @@
 import { useContext, useEffect, useState } from 'react';
 
 // services
-import AuthSvcContext from 'src/shared/services/auth/auth.context';
-import AuthService from 'src/shared/services/auth/auth.service';
 import geneneralSettingsSvcContext from 'src/shared/services/general-settings/general-settings.context';
 import GeneralSettingsService from 'src/shared/services/general-settings/general-settings.service';
-import UserSvcContext from 'src/shared/services/user/user.context';
-import UserService from 'src/shared/services/user/user.service';
+
 
 // static
 import { APP_EVENTS } from 'src/static/enums/app.events';
-import { UserData } from 'src/shared/models/user/user.model';
 import { THEMES } from 'src/static/settings/general-settings.data';
 
 // import DevMenu from './dev-menu.component';
@@ -91,8 +87,8 @@ type AppInitProps = {
 
 export default function AppInit({ children }: AppInitProps) {
 	// *~~~ inject services ~~~* //
-	const authSvc = useContext<AuthService>(AuthSvcContext);
-	const userSvc = useContext<UserService>(UserSvcContext);
+	// const authSvc = useContext<AuthService>(AuthSvcContext);
+	// const userSvc = useContext<UserService>(UserSvcContext);
 	const genSettingsSvc = useContext<GeneralSettingsService>(geneneralSettingsSvcContext);
 
 	const maintenanceMode = import.meta.env.VITE_APP_MAINTENANCE_MODE === 'true';
@@ -114,11 +110,11 @@ export default function AppInit({ children }: AppInitProps) {
 			// *~~~ LOAD AUTH ~~~* //
 
 			// set user data on loggin
-			function onLoggedIn(e: CustomEvent<UserData>) {
-				userSvc.setUserData(e.detail);
-			}
+			// function onLoggedIn(e: CustomEvent<UserData>) {
+			// 	userSvc.setUserData(e.detail);
+			// }
 
-			document.addEventListener(APP_EVENTS.AUTH_LOGGED_IN, onLoggedIn as EventListener);
+			// document.addEventListener(APP_EVENTS.AUTH_LOGGED_IN, onLoggedIn as EventListener);
 
 			function onLoggedOut() {
 				// userSvc.setUserData({
@@ -129,7 +125,7 @@ export default function AppInit({ children }: AppInitProps) {
 
 			document.addEventListener(APP_EVENTS.AUTH_LOGGED_OUT, onLoggedOut as EventListener);
 
-			await authSvc.init();
+			// await authSvc.init();
 
 			// *~~~ html head ~~~* //
 
@@ -143,24 +139,6 @@ export default function AppInit({ children }: AppInitProps) {
 			document.head.appendChild(link);
 
 			setAppLoaded(true);
-
-			// *~~~ google auth ~~~* //
-
-			const script = document.createElement('script');
-			script.src = 'https://accounts.google.com/gsi/client';
-			script.async = true;
-			script.defer = true;
-			script.onload = () => {
-				if (window.google) {
-					window.google.accounts.id.initialize({
-						client_id: import.meta.env.VITE_APP_GOOGLE_GSI_CLIENT_ID,
-						callback: authSvc.onGoogleAuthCallback,
-					});
-				}
-
-				// setGoogleGSILoaded(true);
-			};
-			document.head.appendChild(script);
 		})();
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps

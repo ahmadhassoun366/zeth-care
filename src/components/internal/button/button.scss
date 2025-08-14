@@ -80,6 +80,17 @@
 
 		@apply disabled:text-opacity-25;
 	}
+	&.green {
+		@apply bg-green-900;
+		@apply text-white;
+
+		@apply hover:bg-green-700;
+
+		@apply active:bg-green-950;
+
+		@apply disabled:bg-ghostly_grey-100;
+		@apply disabled:text-ghostly_grey-300;
+	}
 
 	&.ghostgray {
 		@apply bg-ghostly_grey-50;
