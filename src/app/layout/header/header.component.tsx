@@ -208,7 +208,7 @@ export default function HeaderComponent() {
 							<li>
 								<Link
 									className={`nav-link ${
-										isActive('/tilgange') ? 'is-active' : ''
+										isActive(ROUTES.tilgange) ? 'is-active' : ''
 									}`}
 									to={ROUTES.tilgange}
 								>
@@ -228,7 +228,7 @@ export default function HeaderComponent() {
 							<li>
 								<Link
 									className={`nav-link ${
-										isActive('/tilgange') ? 'is-active' : ''
+										isActive(ROUTES.omos) ? 'is-active' : ''
 									}`}
 									to={ROUTES.omos}
 								>
@@ -238,7 +238,7 @@ export default function HeaderComponent() {
 							{/* Job */}
 							<li>
 								<Link
-									className={`nav-link ${isActive('/job') ? 'is-active' : ''}`}
+									className={`nav-link ${isActive(ROUTES.job) ? 'is-active' : ''}`}
 									to={ROUTES.job}
 								>
 									Job
