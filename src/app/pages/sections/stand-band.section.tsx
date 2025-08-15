@@ -41,9 +41,9 @@ export default function Stats() {
 	return (
 		<section
 			id="stats"
-			className="relative py-20 lg:py-28 bg-gradient-to-b from-white to-neutral-50 dark:from-neutral-900 dark:to-neutral-950"
+			className="relative py-32 bg-gradient-to-b from-white to-neutral-50 dark:from-neutral-900 dark:to-neutral-950 px-6"
 		>
-			{/* background glow */}
+			{/* Background glow */}
 			<motion.div
 				aria-hidden
 				className="pointer-events-none absolute -top-20 left-1/2 h-[28rem] w-[28rem] -translate-x-1/2 rounded-full bg-green-200/40 blur-3xl"
@@ -53,7 +53,21 @@ export default function Stats() {
 				transition={{ duration: 1, ease: easeOutSoft }}
 			/>
 
-			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
+			{/* Title & Description */}
+			<div className="relative max-w-4xl mx-auto text-center mb-20">
+				<span className="inline-block mb-4 text-sm font-semibold tracking-wide uppercase text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-900/20 px-3 py-1 rounded-full">
+					Tilgængelighed & beredskab
+				</span>
+				<h2 className="text-3xl md:text-4xl font-bold text-neutral-900 dark:text-white mb-4">
+					Altid klar til at støtte
+				</h2>
+				<p className="text-neutral-600 dark:text-neutral-300 text-base md:text-lg max-w-2xl mx-auto">
+					Vi er til rådighed hele året – med akutberedskab og tryghed, når der er behov.
+				</p>
+			</div>
+
+			{/* Stats Grid */}
+			<div className="relative mx-auto max-w-7xl">
 				<motion.div
 					className="grid gap-8 md:grid-cols-3"
 					initial="hidden"
@@ -83,7 +97,7 @@ export default function Stats() {
 								<item.icon size={24} />
 							</div>
 
-							{/* Number / Title */}
+							{/* Value or Title */}
 							{item.value ? (
 								<div className="text-5xl font-extrabold tracking-tight text-neutral-900 dark:text-white">
 									<Counter value={item.value} />

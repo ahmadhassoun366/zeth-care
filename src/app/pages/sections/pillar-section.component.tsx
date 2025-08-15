@@ -127,7 +127,7 @@ export default function Pillars() {
 										}}
 									/>
 									{/* Icon disc */}
-									<div className="relative z-10 inline-flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-tr from-green-600 to-emerald-500 text-white shadow-lg shadow-emerald-600/25 ring-1 ring-white/10">
+									<div className="relative inline-flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-tr from-green-600 to-emerald-500 text-white shadow-lg shadow-emerald-600/25 ring-1 ring-white/10">
 										<Icon size={22} />
 										{/* Inner animated core dot */}
 										<motion.span
