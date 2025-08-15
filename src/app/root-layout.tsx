@@ -45,6 +45,13 @@ import { THEMES } from '../static/settings/general-settings.data';
 import NotFoundPage from './pages/404/404-page.tsx';
 import About from './pages/about/about.page.tsx';
 import FlowchartPage from './pages/flowchart/flowchart.page.tsx';
+import PsykiskeVanskelighederPage from './pages/psykiskeVanskeligheder/PsykiskeVanskeligheder.page.tsx';
+import ASDAndADHDPage from './pages/autisme_adhd/autisme_adhd.page.tsx';
+import SocialChallengesPage from './pages/social/socialChallenges.page.tsx';
+import SubstanceAbusePage from './pages/substanceAbuse/SubstanceAbuse.page.tsx';
+import TraumaInformedCarePage from './pages/traumaInformedCare/TraumaInformedCare.page.tsx';
+import YouthAtRiskPage from './pages/youthatrisk/youthAtRiskSection.page.tsx';
+import JobsPage from './pages/jobs/jobs.page.tsx';
 // *~~~ lazy loaded pages ~~~*
 
 // pages
@@ -106,6 +113,32 @@ function RoutingComponent() {
 					<Route path={ROUTES.omos} element={<About />} />
 					<Route path={ROUTES.dashboard.root} element={<DashboardPage />} />
 					<Route path={ROUTES.flowchart} element={<FlowchartPage />} />
+					<Route
+						path={ROUTES.indsatser.psykiske}
+						element={<PsykiskeVanskelighederPage />}
+					/>
+					<Route path={ROUTES.indsatser.autisme_adhd} element={<ASDAndADHDPage />} />
+					<Route
+						path={ROUTES.indsatser.social_udfordringer}
+						element={<SocialChallengesPage />}
+					/>
+					<Route
+						path={ROUTES.indsatser.misbrug_dobbeltdiagnoser}
+						element={<SubstanceAbusePage />}
+					/>
+					<Route
+						path={ROUTES.indsatser.kognitiv_adfaerdsterapi}
+						element={<TraumaInformedCarePage />}
+					/>
+					<Route
+						path={ROUTES.indsatser.kriminalitetstruede_børn_og_unge}
+						element={<YouthAtRiskPage />}
+					/>
+					<Route
+						path={ROUTES.jobs}
+						element={<JobsPage />}
+					/>
+					{/* discover page */}
 					{/* 404 */}
 					<Route path="*" element={<NotFoundPage />} />
 

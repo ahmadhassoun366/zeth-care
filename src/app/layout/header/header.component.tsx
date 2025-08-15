@@ -1,5 +1,6 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
 import { Link, useLocation } from 'react-router-dom';
-import { useContext, useMemo, useState } from 'react';
+import { useContext, useState } from 'react';
 import {
 	autoUpdate,
 	flip,
@@ -21,51 +22,41 @@ import GeneralSettingsService from 'src/shared/services/general-settings/general
 import geneneralSettingsSvcContext from 'src/shared/services/general-settings/general-settings.context';
 import ROUTES from 'src/static/router.data';
 
-// ——— NAV DATA ——— //
-const navMain = [
-	{ label: 'Front', href: '/' },
-	{
-		label: 'Services',
-		type: 'dropdown' as const,
-		items: [
-			{ label: 'Indsats-pakken', href: '/indsatser#indsats' },
-			{ label: 'Trygheds-pakken', href: '/indsatser#tryghed' },
-		],
-	},
-	{ label: 'Approaches and methods', href: '/tilgange' },
-	{
-		label: 'About us',
-		type: 'dropdown' as const,
-		items: [
-			{ label: 'Om Tryglund', href: '/om' },
-			{ label: 'Målgruppe & faglighed', href: '/om#maalgruppe' },
-		],
-	},
-	{ label: 'Job', href: '/job' },
-];
-
 /* =======================
    Reusable Dropdown
    ======================= */
+type DropdownItem = { label: string; href: string };
+
+type DropdownGroup = {
+	group: string;
+	links: DropdownItem[];
+};
+
 type DropdownProps = {
 	label: string;
-	items: { label: string; href: string }[];
+	items: DropdownItem[] | DropdownGroup[];
 	isActive?: boolean;
 };
 
 function NavDropdown({ label, items, isActive }: DropdownProps) {
 	const [open, setOpen] = useState(false);
 
+	// Type Guard to check for grouped dropdown
+	function isGrouped(items: DropdownProps['items']): items is DropdownGroup[] {
+		return Array.isArray(items) && typeof items[0] === 'object' && 'group' in items[0];
+	}
+
+	// Setup floating UI for dropdown positioning
 	const floating = useFloating({
 		open,
 		onOpenChange: setOpen,
 		placement: 'bottom-start',
-		strategy: 'fixed', // 👈 add this
+		strategy: 'fixed',
 		whileElementsMounted: autoUpdate,
 		middleware: [offset(10), flip({ padding: 10 }), shift({ padding: 10 })],
 	});
 
-	// hover + click + escape/outside + role (menu)
+	// Interaction hooks
 	const hover = useHover(floating.context, {
 		move: true,
 		handleClose: safePolygon({ requireIntent: true }),
@@ -79,6 +70,7 @@ function NavDropdown({ label, items, isActive }: DropdownProps) {
 
 	return (
 		<li className="relative">
+			{/* Dropdown trigger */}
 			<button
 				ref={floating.refs.setReference}
 				{...getReferenceProps()}
@@ -94,6 +86,7 @@ function NavDropdown({ label, items, isActive }: DropdownProps) {
 				/>
 			</button>
 
+			{/* Dropdown content */}
 			<FloatingPortal>
 				{open && (
 					<div
@@ -101,26 +94,92 @@ function NavDropdown({ label, items, isActive }: DropdownProps) {
 						style={floating.floatingStyles}
 						{...getFloatingProps()}
 						className="z-[9999] min-w-[240px] overflow-hidden rounded-xl border border-neutral-200/60 bg-white/95 p-2 shadow-xl ring-1 ring-black/5 backdrop-blur-sm
-                 dark:border-neutral-700/60 dark:bg-neutral-900/95 dark:ring-white/5"
+						dark:border-neutral-700/60 dark:bg-neutral-900/95 dark:ring-white/5"
 					>
-						{items.map((it) => (
-							<Link
-								key={it.href}
-								to={it.href}
-								className="block rounded-lg px-3 py-2 text-sm text-neutral-800 hover:bg-neutral-50 hover:text-neutral-900
-                     focus:bg-neutral-50 focus:outline-none dark:text-neutral-200 dark:hover:bg-neutral-800 dark:hover:text-white"
-								onClick={() => setOpen(false)}
-								role="menuitem"
-							>
-								{it.label}
-							</Link>
-						))}
+						{isGrouped(items)
+							? items.map((group, groupIndex) => (
+									<div
+										key={group.group}
+										className={`mb-1 ${
+											groupIndex > 0
+												? 'pt-2 border-t border-neutral-200 dark:border-neutral-700/40'
+												: ''
+										}`}
+									>
+										<div className="px-3 py-2 text-xs font-bold text-neutral-500 dark:text-neutral-400 uppercase tracking-wide bg-neutral-100 dark:bg-neutral-800 rounded-md mb-1">
+											{group.group}
+										</div>
+										{group.links.map((item) => (
+											<Link
+												key={item.href}
+												to={item.href}
+												className="block rounded-lg px-3 py-2 text-sm text-neutral-800 hover:bg-neutral-50 hover:text-neutral-900
+							focus:bg-neutral-50 focus:outline-none dark:text-neutral-200 dark:hover:bg-neutral-800 dark:hover:text-white"
+												onClick={() => setOpen(false)}
+												role="menuitem"
+											>
+												{item.label}
+											</Link>
+										))}
+									</div>
+							  ))
+							: (items as DropdownItem[]).map((item) => (
+									<Link
+										key={item.href}
+										to={item.href}
+										className="block rounded-lg px-3 py-2 text-sm text-neutral-800 hover:bg-neutral-50 hover:text-neutral-900
+					focus:bg-neutral-50 focus:outline-none dark:text-neutral-200 dark:hover:bg-neutral-800 dark:hover:text-white"
+										onClick={() => setOpen(false)}
+										role="menuitem"
+									>
+										{item.label}
+									</Link>
+							  ))}
 					</div>
 				)}
 			</FloatingPortal>
 		</li>
 	);
 }
+
+const indsatsDropdown: DropdownGroup[] = [
+	{
+		group: 'Psykiske udfordringer',
+		links: [
+			{ label: 'Psykiske vanskeligheder', href: ROUTES.indsatser.psykiske },
+			{
+				label: 'Kognitiv adfærdsterapi (KAT)',
+				href: ROUTES.indsatser.kognitiv_adfaerdsterapi,
+			},
+		],
+	},
+	{
+		group: 'Neurodivergens',
+		links: [{ label: 'Autisme & ADHD', href: ROUTES.indsatser.autisme_adhd }],
+	},
+	{
+		group: 'Sociale udfordringer',
+		links: [
+			{
+				label: 'Sociale udfordringer, marginalisering eller isolation',
+				href: ROUTES.indsatser.social_udfordringer,
+			},
+			{
+				label: 'Kriminalitetstruede børn og unge',
+				href: ROUTES.indsatser.kriminalitetstruede_børn_og_unge,
+			},
+		],
+	},
+	{
+		group: 'Misbrug',
+		links: [
+			{
+				label: 'Misbrug og dobbeltdiagnoser',
+				href: ROUTES.indsatser.misbrug_dobbeltdiagnoser,
+			},
+		],
+	},
+];
 
 /* =======================
    Header
@@ -149,19 +208,6 @@ export default function HeaderComponent() {
 		href === '/' ? pathname === '/' : pathname.startsWith(href);
 
 	// Split columns for mobile collapsibles
-	const mobileCols = useMemo(
-		() => ({
-			services: navMain.find((n) => n.label === 'Services') as Extract<
-				(typeof navMain)[number],
-				{ type: 'dropdown' }
-			>,
-			about: navMain.find((n) => n.label === 'About us') as Extract<
-				(typeof navMain)[number],
-				{ type: 'dropdown' }
-			>,
-		}),
-		[]
-	);
 
 	return (
 		<nav className="fixed inset-x-0 top-0 z-header">
@@ -197,10 +243,7 @@ export default function HeaderComponent() {
 							{/* Indsatser */}
 							<NavDropdown
 								label="Indsatser"
-								items={[
-									{ label: 'Indsats-pakken', href: '/indsatser#indsats' },
-									{ label: 'Trygheds-pakken', href: '/indsatser#tryghed' },
-								]}
+								items={indsatsDropdown}
 								isActive={isActive('/indsatser')}
 							/>
 
@@ -216,14 +259,6 @@ export default function HeaderComponent() {
 								</Link>
 							</li>
 
-							{/* <NavDropdown
-								label="About us"
-								items={[
-									{ label: 'Om Tryglund', href: '/om' },
-									{ label: 'Målgruppe & faglighed', href: '/om#maalgruppe' },
-								]}
-								isActive={isActive('/om')}
-							/> */}
 							{/* About us */}
 							<li>
 								<Link
@@ -239,9 +274,9 @@ export default function HeaderComponent() {
 							<li>
 								<Link
 									className={`nav-link ${
-										isActive(ROUTES.job) ? 'is-active' : ''
+										isActive(ROUTES.jobs) ? 'is-active' : ''
 									}`}
-									to={ROUTES.job}
+									to={ROUTES.jobs}
 								>
 									Job
 								</Link>
@@ -319,15 +354,22 @@ export default function HeaderComponent() {
 									/>
 								</summary>
 								<div className="mt-1 space-y-1 pl-3">
-									{mobileCols.services.items.map((it) => (
-										<Link
-											key={it.href}
-											to={it.href}
-											onClick={toggleMobileNav}
-											className="block rounded-md px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-50 dark:text-neutral-300 dark:hover:bg-neutral-800"
-										>
-											{it.label}
-										</Link>
+									{indsatsDropdown.map((group) => (
+										<div key={group.group}>
+											<p className="px-3 pt-2 text-xs font-semibold text-neutral-500 dark:text-neutral-400 uppercase">
+												{group.group}
+											</p>
+											{group.links.map((it) => (
+												<Link
+													key={it.href}
+													to={it.href}
+													onClick={toggleMobileNav}
+													className="block rounded-md px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-50 dark:text-neutral-300 dark:hover:bg-neutral-800"
+												>
+													{it.label}
+												</Link>
+											))}
+										</div>
 									))}
 								</div>
 							</details>
@@ -341,28 +383,11 @@ export default function HeaderComponent() {
 							</Link>
 
 							{/* Om os collapsible */}
-							<details className="group rounded-lg">
+							<Link className="group rounded-lg" to={''}>
 								<summary className="flex cursor-pointer list-none items-center justify-between rounded-lg px-3 py-2 text-neutral-800 hover:bg-neutral-50 dark:text-neutral-200 dark:hover:bg-neutral-800">
 									Om os
-									<ChevronDown
-										size={18}
-										strokeWidth={2}
-										className="transition-transform group-open:rotate-180"
-									/>
 								</summary>
-								<div className="mt-1 space-y-1 pl-3">
-									{mobileCols.about.items.map((it) => (
-										<Link
-											key={it.href}
-											to={it.href}
-											onClick={toggleMobileNav}
-											className="block rounded-md px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-50 dark:text-neutral-300 dark:hover:bg-neutral-800"
-										>
-											{it.label}
-										</Link>
-									))}
-								</div>
-							</details>
+							</Link>
 
 							<Link
 								to="/job"
