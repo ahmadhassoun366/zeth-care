@@ -15,7 +15,7 @@ import {
 	safePolygon,
 	FloatingPortal,
 } from '@floating-ui/react';
-import { ChevronDown, HandHeart, Menu, Moon, Sun, X } from 'lucide-react'; // ⬅ Lucide import
+import { HandHeart, Menu, Moon, Sun, X } from 'lucide-react'; // ⬅ Lucide import
 
 import Button from 'src/components/internal/button/button.component';
 import GeneralSettingsService from 'src/shared/services/general-settings/general-settings.service';
@@ -343,37 +343,20 @@ export default function HeaderComponent() {
 								Forside
 							</Link>
 
-							{/* Indsatser collapsible */}
-							<details className="group rounded-lg">
-								<summary className="flex cursor-pointer list-none items-center justify-between rounded-lg px-3 py-2 text-neutral-800 hover:bg-neutral-50 dark:text-neutral-200 dark:hover:bg-neutral-800">
-									Indsatser
-									<ChevronDown
-										size={18}
-										strokeWidth={2}
-										className="transition-transform group-open:rotate-180"
-									/>
-								</summary>
-								<div className="mt-1 space-y-1 pl-3">
-									{indsatsDropdown.map((group) => (
-										<div key={group.group}>
-											<p className="px-3 pt-2 text-xs font-semibold text-neutral-500 dark:text-neutral-400 uppercase">
-												{group.group}
-											</p>
-											{group.links.map((it) => (
-												<Link
-													key={it.href}
-													to={it.href}
-													onClick={toggleMobileNav}
-													className="block rounded-md px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-50 dark:text-neutral-300 dark:hover:bg-neutral-800"
-												>
-													{it.label}
-												</Link>
-											))}
-										</div>
-									))}
-								</div>
-							</details>
-
+							<h1 className="block list-none pl-3">
+								<NavDropdown
+									label="Indsatser"
+									items={indsatsDropdown}
+									isActive={isActive('/indsatser')}
+								/>
+							</h1>
+							<Link
+								to="/tilgange"
+								className="block rounded-lg px-3 py-2 text-neutral-800 hover:bg-neutral-50 dark:text-neutral-200 dark:hover:bg-neutral-800"
+								onClick={toggleMobileNav}
+							>
+								Tilgange & metoder
+							</Link>
 							<Link
 								to="/tilgange"
 								className="block rounded-lg px-3 py-2 text-neutral-800 hover:bg-neutral-50 dark:text-neutral-200 dark:hover:bg-neutral-800"
@@ -384,13 +367,13 @@ export default function HeaderComponent() {
 
 							{/* Om os collapsible */}
 							<Link className="group rounded-lg" to={''}>
-								<summary className="flex cursor-pointer list-none items-center justify-between rounded-lg px-3 py-2 text-neutral-800 hover:bg-neutral-50 dark:text-neutral-200 dark:hover:bg-neutral-800">
+								<h1 className="flex cursor-pointer list-none items-center justify-between rounded-lg px-3 py-2 text-neutral-800 hover:bg-neutral-50 dark:text-neutral-200 dark:hover:bg-neutral-800">
 									Om os
-								</summary>
+								</h1>
 							</Link>
 
 							<Link
-								to="/job"
+								to={ROUTES.jobs}
 								className="block rounded-lg px-3 py-2 text-neutral-800 hover:bg-neutral-50 dark:text-neutral-200 dark:hover:bg-neutral-800"
 								onClick={toggleMobileNav}
 							>
