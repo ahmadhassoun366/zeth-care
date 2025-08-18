@@ -1,14 +1,19 @@
 import { Link } from 'react-router-dom';
 import {
+	useTime,
+	useTransform,
 	motion,
 	useScroll,
-	useTransform,
-	useReducedMotion,
 	cubicBezier,
-	type Variants,
+	useReducedMotion,
+	useMotionTemplate,
+	useMotionValue,
+	useSpring,
 } from 'framer-motion';
+
 import { ArrowRight, CheckCircle2, Phone } from 'lucide-react';
 import { useRef } from 'react';
+import type { Variants } from 'framer-motion';
 
 const features = [
 	'Medarbejdere med høj faglighed og erfaring',
@@ -22,16 +27,68 @@ const EASE_SUBTLE = cubicBezier(0.33, 1, 0.68, 1);
 
 export default function Hero() {
 	const sectionRef = useRef<HTMLElement | null>(null);
-	const prefersReduced = useReducedMotion();
+	const visualRef = useRef<HTMLDivElement | null>(null);
 
 	const { scrollYProgress } = useScroll({
 		target: sectionRef,
 		offset: ['start end', 'end start'],
 	});
 
-	// Parallax effects
-	const blobYLeft = useTransform(scrollYProgress, [0, 1], [0, -40]);
-	const blobYRight = useTransform(scrollYProgress, [0, 1], [0, 50]);
+	const t = useTime();
+	const prefersReduced = useReducedMotion();
+
+	// --------------------------
+	// Idle drift (time-based)
+	// --------------------------
+	const idleY = useTransform(t, (v) => Math.sin(v / 1200) * 8);
+
+	// --------------------------
+	// Parallax from scroll
+	// --------------------------
+	const blobYLeftScroll = useTransform(scrollYProgress, [0, 1], [0, -40]);
+	const blobYRightScroll = useTransform(scrollYProgress, [0, 1], [0, 50]);
+
+	// IMPORTANT: compose as calc() so CSS understands the addition
+	const blobYLeft = useMotionTemplate`calc(${blobYLeftScroll}px + ${idleY}px)`;
+	const blobYRight = useMotionTemplate`calc(${blobYRightScroll}px + ${idleY}px)`;
+
+	// --------------------------
+	// Mouse-driven 3D tilt (subtle)
+	// --------------------------
+	const mx = useMotionValue(0);
+	const my = useMotionValue(0);
+
+	// Map normalized mouse coords (-0.5..0.5) to tilt/shift
+	const tiltX = useTransform(my, [-0.5, 0.5], [10, -10]); // rotateX
+	const tiltY = useTransform(mx, [-0.5, 0.5], [-10, 10]); // rotateY
+	const parallaxX = useTransform(mx, [-0.5, 0.5], [-12, 12]);
+	const parallaxY = useTransform(my, [-0.5, 0.5], [12, -12]);
+
+	// Smooth it out
+	const tiltXSmooth = useSpring(tiltX, { stiffness: 120, damping: 18, mass: 0.3 });
+	const tiltYSmooth = useSpring(tiltY, { stiffness: 120, damping: 18, mass: 0.3 });
+	const pxSmooth = useSpring(parallaxX, { stiffness: 140, damping: 20, mass: 0.25 });
+	const pySmooth = useSpring(parallaxY, { stiffness: 140, damping: 20, mass: 0.25 });
+
+	function onMouseMove(e: React.MouseEvent<HTMLDivElement>) {
+		if (prefersReduced) return;
+		const el = visualRef.current;
+		if (!el) return;
+		const rect = el.getBoundingClientRect();
+		const x = (e.clientX - rect.left) / rect.width; // 0..1
+		const y = (e.clientY - rect.top) / rect.height; // 0..1
+		mx.set(x - 0.5);
+		my.set(y - 0.5);
+	}
+
+	function onMouseLeave() {
+		mx.set(0);
+		my.set(0);
+	}
+
+	const orbitAnimate = prefersReduced
+		? { scale: [1, 1.01, 1], rotate: [0, 0.5, 0] }
+		: { scale: [1, 1.06, 1, 1.05, 1], rotate: [0, -6, 6, 0] };
 
 	// Variants
 	const container: Variants = {
@@ -57,6 +114,10 @@ export default function Hero() {
 		},
 	};
 
+	// Visual scale + lift on scroll
+	const videoScale = useTransform(scrollYProgress, [0, 1], [1, 1.06]);
+	const videoLift = useTransform(scrollYProgress, [0, 1], [0, -12]);
+
 	return (
 		<section
 			ref={sectionRef}
@@ -67,32 +128,16 @@ export default function Hero() {
 			<motion.span
 				aria-hidden
 				className="pointer-events-none absolute -top-20 -left-24 h-80 w-80 rounded-full bg-green-300/50 blur-3xl dark:bg-green-800/40"
-				style={{ y: blobYLeft }}
-				animate={
-					prefersReduced
-						? undefined
-						: { rotate: [0, 8, -8, 0], scale: [1, 1.05, 1, 1.04, 1] }
-				}
-				transition={{
-					repeat: Infinity,
-					duration: 18,
-					ease: 'easeInOut',
-				}}
+				style={{ y: blobYLeft, willChange: 'transform' }}
+				animate={orbitAnimate}
+				transition={{ repeat: Infinity, duration: 18, ease: 'easeInOut' }}
 			/>
 			<motion.span
 				aria-hidden
 				className="pointer-events-none absolute -bottom-32 -right-32 h-[28rem] w-[28rem] rounded-full bg-emerald-200/50 blur-3xl dark:bg-emerald-800/40"
-				style={{ y: blobYRight }}
-				animate={
-					prefersReduced
-						? undefined
-						: { rotate: [0, -6, 6, 0], scale: [1, 1.06, 1, 1.05, 1] }
-				}
-				transition={{
-					repeat: Infinity,
-					duration: 22,
-					ease: 'easeInOut',
-				}}
+				style={{ y: blobYRight, willChange: 'transform' }}
+				animate={orbitAnimate}
+				transition={{ repeat: Infinity, duration: 22, ease: 'easeInOut' }}
 			/>
 
 			<div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -130,7 +175,7 @@ export default function Hero() {
 						>
 							Vi tilbyder{' '}
 							<span className="font-semibold">
-								specialiserede og skræddersyede løsninger
+								spezialiserede og skræddersyede løsninger
 							</span>{' '}
 							til borgere med komplekse behov – hurtigt, trygt og professionelt.
 						</motion.p>
@@ -187,16 +232,33 @@ export default function Hero() {
 					</motion.div>
 
 					{/* Visual */}
-					<div className="relative aspect-[16/10] w-full overflow-hidden rounded-3xl shadow-2xl">
-						<video
+					<motion.div
+						ref={visualRef}
+						onMouseMove={onMouseMove}
+						onMouseLeave={onMouseLeave}
+						className="relative aspect-[16/10] w-full overflow-hidden rounded-3xl shadow-2xl"
+						style={{
+							transformPerspective: 900,
+							rotateX: prefersReduced ? 0 : tiltXSmooth,
+							rotateY: prefersReduced ? 0 : tiltYSmooth,
+							x: prefersReduced ? 0 : pxSmooth,
+							y: prefersReduced ? 0 : pySmooth,
+							willChange: 'transform',
+						}}
+					>
+						<motion.video
 							src="/media/videos/hero.mp4"
 							autoPlay
 							loop
 							muted
 							playsInline
 							className="h-full w-full object-cover"
-						></video>
-					</div>
+							style={{ scale: videoScale, y: videoLift, willChange: 'transform' }}
+						/>
+
+						{/* Soft vignette for depth */}
+						<div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-black/10 via-transparent to-black/10" />
+					</motion.div>
 				</div>
 			</div>
 		</section>
