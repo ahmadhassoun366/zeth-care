@@ -344,7 +344,7 @@ export default function HeaderComponent() {
 							</Link>
 
 							<h1 className="block list-none pl-3">
-								<NavDropdown
+								<NavDropdown	
 									label="Indsatser"
 									items={indsatsDropdown}
 									isActive={isActive('/indsatser')}

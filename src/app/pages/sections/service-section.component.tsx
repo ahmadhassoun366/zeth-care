@@ -1,25 +1,13 @@
 import { Link } from 'react-router-dom';
 import { motion, cubicBezier, type Variants } from 'framer-motion';
-import {
-	Users,
-	LifeBuoy,
-	Activity,
-	HeartHandshake,
-	GraduationCap,
-	House,
-	ArrowRight,
-} from 'lucide-react';
+import { Users, LifeBuoy, Activity, GraduationCap, ArrowRight } from 'lucide-react';
 
 const services = [
 	{ icon: Users, label: 'Enkeltmandsprojekter', to: '/indsatser#enkeltmands' },
 	{ icon: LifeBuoy, label: 'Akut anbringelse', to: '/indsatser#akut' },
 	{ icon: Activity, label: 'Forbedringsforløb / UKN', to: '/indsatser#ukn' },
-	{ icon: HeartHandshake, label: 'Støttekontaktperson', to: '/indsatser#stotte' },
 	{ icon: GraduationCap, label: 'Unge støtte', to: '/indsatser#unge' },
-	{ icon: HeartHandshake, label: 'Familiebehandling', to: '/indsatser#familie' },
-	{ icon: Users, label: 'Mentorstøtte', to: '/indsatser#mentor' },
 	{ icon: Activity, label: 'Misbrugsbehandling', to: '/indsatser#misbrug' },
-	{ icon: House, label: 'Anbringelse i eget hjem', to: '/indsatser#egethjem' },
 ];
 
 // Type-safe easing function
@@ -65,17 +53,14 @@ export default function Services() {
 					whileInView="show"
 					viewport={{ once: false, amount: 0.3 }}
 				>
-					{services.map(({ icon: Icon, label, to }) => (
+					{services.map(({ icon: Icon, label }) => (
 						<motion.div
 							key={label}
 							variants={card}
 							whileHover={{ y: -4 }}
 							transition={{ duration: 0.25 }}
 						>
-							<Link
-								to={to}
-								className="group relative flex h-full flex-col justify-between rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm transition dark:border-neutral-800 dark:bg-neutral-900"
-							>
+							<div className="group relative flex h-full flex-col justify-between rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm transition dark:border-neutral-800 dark:bg-neutral-900">
 								{/* top accent */}
 								<span className="pointer-events-none absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-green-500 via-emerald-500 to-green-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 								{/* icon chip */}
@@ -99,7 +84,7 @@ export default function Services() {
 											'radial-gradient(60% 60% at 50% 0%, rgba(16,185,129,0.12), transparent)',
 									}}
 								/>
-							</Link>
+							</div>
 						</motion.div>
 					))}
 				</motion.div>
