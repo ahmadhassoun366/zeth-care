@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { motion, cubicBezier, type Variants } from 'framer-motion';
 import { CheckCircle2, ArrowRight } from 'lucide-react';
+import ROUTES from 'src/static/router.data';
 
 const easeOutSoft = cubicBezier(0.22, 1, 0.36, 1);
 
@@ -70,7 +71,7 @@ export default function About() {
 
 						<motion.div variants={fadeUp} className="mt-7 flex flex-wrap gap-3">
 							<Link
-								to="/om"
+								to={ROUTES.omos}
 								className="inline-flex items-center gap-2 rounded-full border border-neutral-300 bg-white px-5 py-3 text-neutral-900 shadow-sm transition hover:bg-neutral-50 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white dark:hover:bg-neutral-700"
 							>
 								Læs om os

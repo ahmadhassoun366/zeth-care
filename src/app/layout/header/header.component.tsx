@@ -281,6 +281,17 @@ export default function HeaderComponent() {
 									Job
 								</Link>
 							</li>
+							{/* Privacy Policy */}
+							<li>
+								<Link
+									className={`nav-link ${
+										isActive(ROUTES.policies) ? 'is-active' : ''
+									}`}
+									to={ROUTES.policies}
+								>
+									Privatlivspolitik
+								</Link>
+							</li>
 						</ul>
 					</div>
 
@@ -379,7 +390,14 @@ export default function HeaderComponent() {
 							>
 								Job
 							</Link>
-
+							<Link
+								to={ROUTES.policies}
+								className="block rounded-lg px-3 py-2 text-neutral-800 hover:bg-neutral-50 dark:text-neutral-200 dark:hover:bg-neutral-800"
+								onClick={toggleMobileNav}
+							>
+								Privatlivspolitik
+							</Link>
+							
 							<div className="mt-3 flex items-center gap-3">
 								<Link to="/kontakt" onClick={toggleMobileNav}>
 									<Button className="green small rounded-full px-5">

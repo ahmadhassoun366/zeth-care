@@ -35,6 +35,7 @@ import YouthAtRiskPage from './pages/youthatrisk/youthAtRiskSection.page.tsx';
 import JobsPage from './pages/jobs/jobs.page.tsx';
 import ContactPage from './pages/contactUs/contactUs.page.tsx';
 import HomeLanding from './pages/home/home.page.tsx';
+import PrivacyPolicyPage from './pages/policies/policies.page.tsx';
 // *~~~ lazy loaded pages ~~~*
 
 // pages
@@ -93,6 +94,7 @@ function RoutingComponent() {
 					/>
 					<Route path={ROUTES.jobs} element={<JobsPage />} />
 					<Route path={ROUTES.kontakt} element={<ContactPage />} />
+					<Route path={ROUTES.policies} element={<PrivacyPolicyPage />} />
 					{/* discover page */}
 					{/* 404 */}
 					<Route path="*" element={<NotFoundPage />} />
