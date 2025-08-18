@@ -71,6 +71,28 @@ export default function ContactPage() {
 		<main className="bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100">
 			<Helmet>
 				<title>Kontakt og Visitation – Tryglund</title>
+				<script type="application/ld+json">
+					{JSON.stringify({
+						'@context': 'https://schema.org',
+						'@type': 'ContactPage',
+						name: 'Kontakt og Visitation – Tryglund',
+						about: 'Kontakt og visitation for børn og unge',
+						mainEntity: {
+							'@type': 'Organization',
+							name: 'Tryglund',
+							contactPoint: [
+								{
+									'@type': 'ContactPoint',
+									contactType: 'Visitation',
+									telephone: '0000',
+									email: 'ab@tryglund.dk',
+									areaServed: 'DK',
+									availableLanguage: ['da'],
+								},
+							],
+						},
+					})}
+				</script>
 			</Helmet>
 
 			{/* HERO */}
