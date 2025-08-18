@@ -32,8 +32,6 @@ export default function Hero() {
 	// Parallax effects
 	const blobYLeft = useTransform(scrollYProgress, [0, 1], [0, -40]);
 	const blobYRight = useTransform(scrollYProgress, [0, 1], [0, 50]);
-	const visualY = useTransform(scrollYProgress, [0, 1], [0, -20]);
-	const visualScale = useTransform(scrollYProgress, [0, 1], [1, 1.04]);
 
 	// Variants
 	const container: Variants = {
@@ -189,29 +187,16 @@ export default function Hero() {
 					</motion.div>
 
 					{/* Visual */}
-					<motion.div
-						className="relative aspect-[16/10] w-full overflow-hidden rounded-3xl shadow-2xl"
-						style={{ y: visualY, scale: visualScale }}
-						initial={{ opacity: 0, y: 40 }}
-						whileInView={{ opacity: 1, y: 0 }}
-						viewport={{ once: true, amount: 0.5 }}
-						transition={{ duration: 0.9, ease: EASE_SMOOTH }}
-						whileHover={{ scale: 1.02 }}
-					>
-						<img
-							src="media/images/hero.png"
-							alt="Omsorg i aktion"
+					<div className="relative aspect-[16/10] w-full overflow-hidden rounded-3xl shadow-2xl">
+						<video
+							src="/media/videos/hero.mp4"
+							autoPlay
+							loop
+							muted
+							playsInline
 							className="h-full w-full object-cover"
-						/>
-						<div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent dark:from-black/50" />
-						<motion.div
-							className="absolute right-4 top-4 rounded-full bg-white/80 px-4 py-1.5 text-xs font-medium text-neutral-700 backdrop-blur dark:bg-neutral-800/80 dark:text-neutral-100"
-							animate={prefersReduced ? undefined : { y: [0, -4, 0] }}
-							transition={{ repeat: Infinity, duration: 5, ease: 'easeInOut' }}
-						>
-							24/7 Beredskab
-						</motion.div>
-					</motion.div>
+						></video>
+					</div>
 				</div>
 			</div>
 		</section>
