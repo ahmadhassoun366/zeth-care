@@ -10,6 +10,8 @@ import {
 	ArrowLeft,
 } from 'lucide-react';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import ROUTES from 'src/static/router.data';
 
 // ────────────────────────────────────────────────────────────────────────────────
 // Data – easy to extend with more jobs later
@@ -183,12 +185,12 @@ function JobDetails({ job, onBack }: { job: any; onBack?: () => void }) {
 				>
 					<Mail size={18} /> Søg stillingen
 				</a>
-				<a
-					href="/kontakt"
+				<Link
+					to={ROUTES.kontakt}
 					className="inline-flex items-center gap-2 rounded-full border border-neutral-300 dark:border-neutral-700 px-6 py-3 font-medium hover:bg-neutral-50 dark:hover:bg-neutral-800 transition"
 				>
 					Spørgsmål? Kontakt os
-				</a>
+				</Link>
 			</div>
 		</div>
 	);

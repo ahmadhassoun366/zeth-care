@@ -7,7 +7,6 @@ import GeneralSettingsService from 'src/shared/services/general-settings/general
 
 
 // static
-import { APP_EVENTS } from 'src/static/enums/app.events';
 import { THEMES } from 'src/static/settings/general-settings.data';
 
 // import DevMenu from './dev-menu.component';
@@ -87,8 +86,6 @@ type AppInitProps = {
 
 export default function AppInit({ children }: AppInitProps) {
 	// *~~~ inject services ~~~* //
-	// const authSvc = useContext<AuthService>(AuthSvcContext);
-	// const userSvc = useContext<UserService>(UserSvcContext);
 	const genSettingsSvc = useContext<GeneralSettingsService>(geneneralSettingsSvcContext);
 
 	const maintenanceMode = import.meta.env.VITE_APP_MAINTENANCE_MODE === 'true';
@@ -108,22 +105,6 @@ export default function AppInit({ children }: AppInitProps) {
 			await genSettingsSvc.init();
 
 			// *~~~ LOAD AUTH ~~~* //
-
-			// set user data on loggin
-			// function onLoggedIn(e: CustomEvent<UserData>) {
-			// 	userSvc.setUserData(e.detail);
-			// }
-
-			// document.addEventListener(APP_EVENTS.AUTH_LOGGED_IN, onLoggedIn as EventListener);
-
-			function onLoggedOut() {
-				// userSvc.setUserData({
-				// 	pfp: '',
-				// 	username: '',
-				// });
-			}
-
-			document.addEventListener(APP_EVENTS.AUTH_LOGGED_OUT, onLoggedOut as EventListener);
 
 			// await authSvc.init();
 

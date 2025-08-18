@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import { ShieldAlert, MessageCircleHeart, BookOpenText, Brain, Sparkles } from 'lucide-react';
+import ROUTES from 'src/static/router.data';
 
 const principles = [
 	{
@@ -127,7 +128,7 @@ export default function YouthAtRiskPage() {
 						risikoadfærd på vej mod nye muligheder.
 					</p>
 					<a
-						href="/kontakt"
+						href={ROUTES.kontakt}
 						className="inline-block bg-white text-emerald-700 hover:bg-emerald-100 font-medium px-8 py-3 rounded-full transition"
 					>
 						Kontakt os

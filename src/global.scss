@@ -1,15 +1,6 @@
 /* @import url('./layout/header/header.css');
 @import url('./components/modals/modal-container.css'); */
-@use './components/internal/skeleton/skeleton.scss';
 @use './components/internal/button/button.scss';
-@use './components/internal/text-field/text-field.scss';
-@use './components/internal/text-field/search-input.scss';
-@use './components/internal/tooltip/tooltip.scss';
-@use './components/internal/text-link/text-link.component.scss';
-@use './components/modals/modal-container.css';
-@use './components/internal/checkbox/checkbox.scss';
-@use './components/internal/dropdown/dropdown.component.scss';
-
 @use './app/layout/header/header.scss';
 @use './app/layout/footer/footer.scss';
 @tailwind base;
