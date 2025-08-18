@@ -1,5 +1,4 @@
 import { Helmet } from 'react-helmet';
-import { motion } from 'framer-motion';
 import {
 	Briefcase,
 	Mail,
@@ -74,34 +73,6 @@ const jobs = [
 			'Indflydelse på arbejdsmetoder og udvikling',
 		],
 	},
-	{
-		id: 'vikar-randers-deltid',
-		title: 'Tilkaldevikar',
-		location: 'Randers',
-		department: 'Tryglund – Afdeling Randers',
-		type: 'Deltid / tilkald',
-		duration: 'Efter behov',
-		start: 'Løbende optag',
-		email: 'job@tryglund.dk',
-		heroTag: 'Fleksibelt job',
-		intro: 'Har du lyst til et fleksibelt job, hvor du kan gøre en forskel for vores borgere? Vi søger tilkaldevikarer til vores afdeling i Randers.',
-		about: 'Som tilkaldevikar bliver du en del af et dedikeret team, der støtter borgere i deres hverdag.',
-		responsibilities: [
-			'Støtte borgere i dagligdagsaktiviteter',
-			'Bidrage til struktur og tryghed i hverdagen',
-			'Samarbejde med faste medarbejdere',
-		],
-		requirements: [
-			'Erfaring fra social- eller pædagogisk område er en fordel',
-			'Fleksibel og mødestabil',
-			'Kan skabe ro og tryghed i relationer',
-		],
-		benefits: [
-			'Et meningsfuldt job med fleksible arbejdstider',
-			'Mulighed for at opbygge erfaring på området',
-			'God introduktion og støtte fra kolleger',
-		],
-	},
 ];
 
 // ────────────────────────────────────────────────────────────────────────────────
@@ -131,12 +102,9 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 // ────────────────────────────────────────────────────────────────────────────────
 function JobCard({ job, isActive, onOpen }: { job: any; isActive: boolean; onOpen: () => void }) {
 	return (
-		<motion.button
+		<button
 			type="button"
 			onClick={onOpen}
-			initial={{ opacity: 0, y: 16 }}
-			whileInView={{ opacity: 1, y: 0 }}
-			transition={{ duration: 0.35 }}
 			className={`text-left w-full rounded-2xl border p-5 md:p-6 transition hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-400/50 bg-white/70 dark:bg-neutral-900/60 backdrop-blur border-neutral-200 dark:border-neutral-800 ${
 				isActive ? 'ring-2 ring-emerald-400/60' : ''
 			}`}
@@ -162,7 +130,7 @@ function JobCard({ job, isActive, onOpen }: { job: any; isActive: boolean; onOpe
 			<div className="mt-4 flex items-center text-sm font-medium text-emerald-700 dark:text-emerald-300">
 				Se detaljer <ChevronRight className="ml-1" size={18} />
 			</div>
-		</motion.button>
+		</button>
 	);
 }
 
@@ -297,14 +265,7 @@ export default function JobsPage() {
 			{/* Hero */}
 			<section className="py-24 pt-44 px-6 bg-gradient-to-br from-emerald-50 to-white dark:from-emerald-900/10 dark:to-neutral-950">
 				<div className="max-w-6xl mx-auto text-center">
-					<motion.h1
-						initial={{ opacity: 0, y: 20 }}
-						whileInView={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.6 }}
-						className="text-4xl md:text-5xl font-bold mb-4"
-					>
-						Ledige stillinger
-					</motion.h1>
+					<h1 className="text-4xl md:text-5xl font-bold mb-4">Ledige stillinger</h1>
 					<p className="text-lg text-neutral-700 dark:text-neutral-300 max-w-2xl mx-auto">
 						Et trygt, professionelt og udviklingsfokuseret sted at arbejde – med
 						borgeren i centrum.
