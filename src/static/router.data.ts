@@ -12,6 +12,7 @@ const ROUTES = {
 		kognitiv_adfaerdsterapi: '/indsatser/kognitiv-adfaerdsterapi',
 		kriminalitetstruede_børn_og_unge: '/indsatser/kriminalitetstruede-børn-og-unge',
 	},
+	kontakt: '/kontakt',
 	dashboard: {
 		root: '/dashboard',
 	},

@@ -52,6 +52,7 @@ import SubstanceAbusePage from './pages/substanceAbuse/SubstanceAbuse.page.tsx';
 import TraumaInformedCarePage from './pages/traumaInformedCare/TraumaInformedCare.page.tsx';
 import YouthAtRiskPage from './pages/youthatrisk/youthAtRiskSection.page.tsx';
 import JobsPage from './pages/jobs/jobs.page.tsx';
+import ContactPage from './pages/contactUs/contactUs.page.tsx';
 // *~~~ lazy loaded pages ~~~*
 
 // pages
@@ -137,6 +138,12 @@ function RoutingComponent() {
 					<Route
 						path={ROUTES.jobs}
 						element={<JobsPage />}
+						
+					/>
+					<Route
+						path={ROUTES.kontakt}
+						element={<ContactPage />}
+						
 					/>
 					{/* discover page */}
 					{/* 404 */}
