@@ -45,34 +45,6 @@ const jobs = [
 			'Indflydelse på egne opgaver og mulighed for at præge udviklingen',
 		],
 	},
-	{
-		id: 'paedagog-aarhus-fuldtid',
-		title: 'Pædagog til botilbud',
-		location: 'Aarhus',
-		department: 'Tryglund – Botilbud Aarhus',
-		type: 'Fuld tid',
-		duration: 'Fast stilling',
-		start: '1. oktober 2025',
-		email: 'job@tryglund.dk',
-		heroTag: 'Fast stilling',
-		intro: 'Vi søger en engageret pædagog til vores botilbud i Aarhus. Her arbejder vi med voksne borgere, der har brug for støtte til at mestre hverdagen.',
-		about: 'Du bliver en del af et tværfagligt team med fokus på relationer, struktur og udvikling af borgernes ressourcer.',
-		responsibilities: [
-			'Planlægge og gennemføre pædagogiske aktiviteter',
-			'Støtte borgerne i sociale og praktiske færdigheder',
-			'Dokumentere og evaluere pædagogiske indsatser',
-		],
-		requirements: [
-			'Uddannet pædagog',
-			'Erfaring med special- eller socialområdet er en fordel',
-			'God til at skabe relationer og struktur',
-		],
-		benefits: [
-			'Et engageret kollegialt fællesskab',
-			'Supervision og løbende kompetenceudvikling',
-			'Indflydelse på arbejdsmetoder og udvikling',
-		],
-	},
 ];
 
 // ────────────────────────────────────────────────────────────────────────────────
