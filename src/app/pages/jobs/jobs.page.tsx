@@ -12,6 +12,7 @@ import {
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import ROUTES from 'src/static/router.data';
+import { motion } from 'framer-motion';
 
 // ────────────────────────────────────────────────────────────────────────────────
 // Data – easy to extend with more jobs later
@@ -70,6 +71,19 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 		</section>
 	);
 }
+
+// ────────────────────────────────────────────────────────────────────────────────
+// Motion helpers
+// ────────────────────────────────────────────────────────────────────────────────
+const fadeUp = {
+	hidden: { opacity: 0, y: 14 },
+	show: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 80, damping: 16 } },
+} as const;
+
+const stagger = {
+	hidden: { opacity: 0 },
+	show: { opacity: 1, transition: { staggerChildren: 0.08 } },
+} as const;
 
 // ────────────────────────────────────────────────────────────────────────────────
 // Job Card (left column list)
@@ -238,16 +252,55 @@ export default function JobsPage() {
 			</Helmet>
 
 			{/* Hero */}
-			<section className="py-24 pt-44 px-6 bg-gradient-to-br from-emerald-50 to-white dark:from-emerald-900/10 dark:to-neutral-950">
-				<div className="max-w-6xl mx-auto text-center">
-					<h1 className="text-4xl md:text-5xl font-bold mb-4">Ledige stillinger</h1>
-					<p className="text-lg text-neutral-700 dark:text-neutral-300 max-w-2xl mx-auto">
-						Et trygt, professionelt og udviklingsfokuseret sted at arbejde – med
-						borgeren i centrum.
-					</p>
+
+			<section className="relative overflow-hidden py-24 pt-44 px-6 bg-gradient-to-br from-emerald-50 to-white dark:from-emerald-900/10 dark:to-neutral-950">
+				{/* soft background accents */}
+				<motion.div
+					aria-hidden
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1 }}
+					transition={{ duration: 0.8 }}
+					className="pointer-events-none absolute inset-0"
+				>
+					<motion.div
+						className="absolute -top-24 -left-24 h-64 w-64 rounded-full bg-emerald-400/20 blur-3xl"
+						animate={{ x: [0, 20, -10, 0], y: [0, -8, 6, 0] }}
+						transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
+					/>
+					<motion.div
+						className="absolute -bottom-24 -right-16 h-72 w-72 rounded-full bg-emerald-300/20 blur-3xl"
+						animate={{ x: [0, -15, 10, 0], y: [0, 10, -6, 0] }}
+						transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
+					/>
+				</motion.div>
+
+				<div className="max-w-6xl mx-auto text-center relative">
+					<motion.div
+						variants={stagger}
+						initial="hidden"
+						whileInView="show"
+						viewport={{ once: true, amount: 0.6 }}
+					>
+						<motion.h1
+							variants={fadeUp}
+							className="text-4xl md:text-5xl font-bold mb-4 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-emerald-700 to-emerald-500 dark:from-emerald-300 dark:to-emerald-400"
+						>
+							Ledige stillinger
+						</motion.h1>
+						<motion.p
+							variants={fadeUp}
+							className="text-lg text-neutral-700 dark:text-neutral-300 max-w-3xl mx-auto"
+						>
+							Et trygt, professionelt og udviklingsfokuseret sted at arbejde – med
+							borgeren i centrum.
+						</motion.p>
+						<motion.div
+							variants={fadeUp}
+							className="mx-auto mt-6 h-px w-28 bg-gradient-to-r from-transparent via-emerald-400 to-transparent opacity-80"
+						/>
+					</motion.div>
 				</div>
 			</section>
-
 			{/* Content */}
 			<section className="py-16 px-6">
 				<div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 md:gap-12">
