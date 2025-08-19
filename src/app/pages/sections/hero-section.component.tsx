@@ -175,7 +175,7 @@ export default function Hero() {
 						>
 							Vi tilbyder{' '}
 							<span className="font-semibold">
-								spezialiserede og skræddersyede løsninger
+								specialiserede og skræddersyede løsninger
 							</span>{' '}
 							til borgere med komplekse behov – hurtigt, trygt og professionelt.
 						</motion.p>
