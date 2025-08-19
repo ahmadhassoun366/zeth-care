@@ -355,29 +355,23 @@ export default function HeaderComponent() {
 							</Link>
 
 							<h1 className="block list-none pl-3">
-								<NavDropdown	
+								<NavDropdown
 									label="Indsatser"
 									items={indsatsDropdown}
 									isActive={isActive('/indsatser')}
 								/>
 							</h1>
+
 							<Link
-								to="/tilgange"
+								to={ROUTES.flowchart}
 								className="block rounded-lg px-3 py-2 text-neutral-800 hover:bg-neutral-50 dark:text-neutral-200 dark:hover:bg-neutral-800"
 								onClick={toggleMobileNav}
 							>
-								Tilgange & metoder
-							</Link>
-							<Link
-								to="/tilgange"
-								className="block rounded-lg px-3 py-2 text-neutral-800 hover:bg-neutral-50 dark:text-neutral-200 dark:hover:bg-neutral-800"
-								onClick={toggleMobileNav}
-							>
-								Tilgange & metoder
+								Flowchart
 							</Link>
 
 							{/* Om os collapsible */}
-							<Link className="group rounded-lg" to={''}>
+							<Link className="group rounded-lg" to={ROUTES.omos}>
 								<h1 className="flex cursor-pointer list-none items-center justify-between rounded-lg px-3 py-2 text-neutral-800 hover:bg-neutral-50 dark:text-neutral-200 dark:hover:bg-neutral-800">
 									Om os
 								</h1>
@@ -397,7 +391,7 @@ export default function HeaderComponent() {
 							>
 								Privatlivspolitik
 							</Link>
-							
+
 							<div className="mt-3 flex items-center gap-3">
 								<Link to="/kontakt" onClick={toggleMobileNav}>
 									<Button className="green small rounded-full px-5">
