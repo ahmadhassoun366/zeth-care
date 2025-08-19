@@ -6,6 +6,7 @@ import {
 	UsersRound,
 	Quote,
 } from 'lucide-react';
+import ROUTES from 'src/static/router.data';
 
 export default function SocialChallengesPage() {
 	return (
@@ -140,7 +141,7 @@ export default function SocialChallengesPage() {
 						udfordringer og isolation.
 					</p>
 					<a
-						href="/kontakt"
+						href={ROUTES.kontakt}
 						className="inline-block bg-white text-emerald-700 hover:bg-emerald-100 font-medium px-6 py-3 rounded-full transition"
 					>
 						Kontakt os

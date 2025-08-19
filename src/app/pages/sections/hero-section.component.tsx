@@ -14,6 +14,7 @@ import {
 import { ArrowRight, CheckCircle2, Phone } from 'lucide-react';
 import { useRef } from 'react';
 import type { Variants } from 'framer-motion';
+import ROUTES from 'src/static/router.data';
 
 const features = [
 	'Medarbejdere med høj faglighed og erfaring',
@@ -212,7 +213,7 @@ export default function Hero() {
 
 							<motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
 								<Link
-									to="/kontakt"
+									to={ROUTES.kontakt}
 									className="inline-flex items-center gap-2 rounded-full border border-neutral-300 bg-white px-6 py-3 text-neutral-900 shadow-sm transition hover:bg-neutral-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-300 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white dark:hover:bg-neutral-700"
 								>
 									Kontakt os

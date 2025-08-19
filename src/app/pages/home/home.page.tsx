@@ -7,6 +7,7 @@ import Services from '../sections/service-section.component';
 import Stats from '../sections/stand-band.section';
 import AkutBar from '../sections/akut-bar.section';
 import About from '../sections/about.section';
+import ROUTES from 'src/static/router.data';
 
 export default function HomeLanding() {
 	return (
@@ -40,7 +41,7 @@ export default function HomeLanding() {
 							</p>
 						</div>
 						<Link
-							to="/kontakt"
+							to={ROUTES.kontakt}
 							className="inline-flex items-center gap-2 rounded-full btn-green px-5 py-3"
 						>
 							Kontakt & visitation <ArrowRight size={16} />

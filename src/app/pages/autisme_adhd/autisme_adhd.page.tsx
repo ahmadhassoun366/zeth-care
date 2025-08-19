@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import { Users, LayoutDashboard, MessageSquareHeart, Lightbulb } from 'lucide-react';
+import ROUTES from 'src/static/router.data';
 
 const timeline = [
 	{
@@ -126,7 +127,7 @@ export default function ASDAndADHDPage() {
 						rammer for unge og voksne med autismespektrumforstyrrelser og ADHD.
 					</motion.p>
 					<motion.a
-						href="/kontakt"
+						href={ROUTES.kontakt}
 						initial={{ opacity: 0, y: 10 }}
 						whileInView={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.5, delay: 0.3 }}

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { motion, cubicBezier, type Variants } from 'framer-motion';
 import { Phone, ArrowRight } from 'lucide-react';
+import ROUTES from 'src/static/router.data';
 
 const easeOutSoft = cubicBezier(0.22, 1, 0.36, 1);
 
@@ -83,7 +84,7 @@ export default function AkutBar() {
 							</span>
 
 							<Link
-								to="/kontakt"
+								to={ROUTES.kontakt}
 								className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 font-medium text-green-900 shadow-lg shadow-white/10 transition hover:bg-lime-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
 							>
 								Kontakt os <ArrowRight size={16} />

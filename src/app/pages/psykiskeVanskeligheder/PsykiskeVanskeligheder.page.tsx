@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet';
 import { useState } from 'react';
 import { motion, cubicBezier } from 'framer-motion';
 import { ChevronDown, ChevronUp, Lightbulb, HeartHandshake, ShieldCheck } from 'lucide-react';
+import ROUTES from 'src/static/router.data';
 
 const EASE = cubicBezier(0.22, 1, 0.36, 1);
 
@@ -200,7 +201,7 @@ export default function PsykiskeVanskelighederPage() {
 					</p>
 
 					<a
-						href="/kontakt"
+						href={ROUTES.kontakt}	
 						className="inline-flex items-center gap-3 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-6 py-3 rounded-full shadow-md transition-transform hover:-translate-y-0.5"
 					>
 						<span>Kontakt os</span>

@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import { HeartHandshake, ShieldCheck, SmilePlus, CircleSlash } from 'lucide-react';
+import ROUTES from 'src/static/router.data';
 
 export default function TraumaInformedCarePage() {
 	return (
@@ -163,7 +164,7 @@ export default function TraumaInformedCarePage() {
 						pædagogik med omsorg og faglighed.
 					</p>
 					<a
-						href="/kontakt"
+						href={ROUTES.kontakt}
 						className="inline-block bg-white text-emerald-700 hover:bg-emerald-100 font-medium px-8 py-3 rounded-full transition"
 					>
 						Kontakt os

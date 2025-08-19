@@ -15,7 +15,7 @@ import {
 	safePolygon,
 	FloatingPortal,
 } from '@floating-ui/react';
-import { HandHeart, Menu, Moon, Sun, X } from 'lucide-react'; // ⬅ Lucide import
+import { ChevronDown, HandHeart, Menu, Moon, Sun, X } from 'lucide-react'; // ⬅ Lucide import
 
 import Button from 'src/components/internal/button/button.component';
 import GeneralSettingsService from 'src/shared/services/general-settings/general-settings.service';
@@ -78,12 +78,14 @@ function NavDropdown({ label, items, isActive }: DropdownProps) {
 				aria-expanded={open}
 				aria-haspopup="menu"
 			>
-				{label}
-				<i
-					className={`fa-regular fa-angle-down transition-transform duration-200 ${
-						open ? 'rotate-180' : ''
-					}`}
-				/>
+				<span className="text-neutral-800 hover:bg-neutral-50 dark:text-neutral-200 dark:hover:bg-neutral-800">
+					{label}
+				</span>
+				{/* Lucide chevron icon */}
+				<span className={`transition-transform duration-200 ${open ? 'rotate-180' : ''}`}>
+					{/* Import at top: import { ChevronDown } from 'lucide-react'; */}
+					<ChevronDown size={18} strokeWidth={2} />
+				</span>
 			</button>
 
 			{/* Dropdown content */}
@@ -297,7 +299,7 @@ export default function HeaderComponent() {
 
 					{/* Right: CTA + Theme + Burger */}
 					<div className="flex items-center gap-3">
-						<Link to="/kontakt" className="hidden sm:block">
+						<Link to={ROUTES.kontakt} className="hidden sm:block">
 							<Button className="green small rounded-full px-5">
 								Kontakt & Visitation
 							</Button>
@@ -393,7 +395,7 @@ export default function HeaderComponent() {
 							</Link>
 
 							<div className="mt-3 flex items-center gap-3">
-								<Link to="/kontakt" onClick={toggleMobileNav}>
+								<Link to={ROUTES.kontakt} onClick={toggleMobileNav}>
 									<Button className="green small rounded-full px-5">
 										Kontakt & Visitation
 									</Button>
