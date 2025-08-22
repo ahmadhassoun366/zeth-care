@@ -84,7 +84,7 @@ export default function ContactPage() {
 								{
 									'@type': 'ContactPoint',
 									contactType: 'Visitation',
-									telephone: '0000',
+									telephone: '20614701',
 									email: 'ab@tryglund.dk',
 									areaServed: 'DK',
 									availableLanguage: ['da'],
@@ -156,7 +156,7 @@ export default function ContactPage() {
 							<h2 className="text-xl font-semibold mb-4">Kontakt os</h2>
 							<div className="space-y-3 text-sm text-neutral-700 dark:text-neutral-300">
 								<a
-									href="tel:0000"
+									href="tel:20614701"
 									className="flex items-center gap-3 rounded-lg border border-neutral-200 dark:border-neutral-800 p-3 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition"
 								>
 									<Phone
@@ -166,7 +166,7 @@ export default function ContactPage() {
 									<div>
 										<div className="font-medium">Telefonisk kontakt</div>
 										<div className="text-neutral-600 dark:text-neutral-400">
-											0000
+											20614701
 										</div>
 									</div>
 								</a>
@@ -193,7 +193,7 @@ export default function ContactPage() {
 									<div>
 										<div className="font-medium">Telefontid</div>
 										<div className="text-neutral-600 dark:text-neutral-400">
-											Man–fre kl. 9–15 (akutte henvendelser besvares hurtigst
+											Alle dage · 24/7 (akutte henvendelser besvares hurtigst
 											muligt)
 										</div>
 									</div>
@@ -453,8 +453,8 @@ export default function ContactPage() {
 						</h3>
 						<p className="text-neutral-700 dark:text-neutral-300">
 							Ring på{' '}
-							<a href="tel:0000" className="underline">
-								0000
+							<a href="tel:20614701" className="underline">
+								20614701
 							</a>{' '}
 							– vi besvarer henvendelser i telefontiden og vender tilbage hurtigst
 							muligt.

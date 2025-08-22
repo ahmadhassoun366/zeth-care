@@ -36,6 +36,7 @@ import JobsPage from './pages/jobs/jobs.page.tsx';
 import ContactPage from './pages/contactUs/contactUs.page.tsx';
 import HomeLanding from './pages/home/home.page.tsx';
 import PrivacyPolicyPage from './pages/policies/policies.page.tsx';
+import IndsatserIndexPage from './pages/Indsatser/IndsatserIndex.page.tsx';
 // *~~~ lazy loaded pages ~~~*
 
 // pages
@@ -95,6 +96,7 @@ function RoutingComponent() {
 					<Route path={ROUTES.jobs} element={<JobsPage />} />
 					<Route path={ROUTES.kontakt} element={<ContactPage />} />
 					<Route path={ROUTES.policies} element={<PrivacyPolicyPage />} />
+						<Route path={ROUTES.indsatser.root} element={<IndsatserIndexPage />} />
 					{/* discover page */}
 					{/* 404 */}
 					<Route path="*" element={<NotFoundPage />} />

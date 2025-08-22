@@ -5,6 +5,7 @@ const ROUTES = {
 	flowchart: '/flowchart',
 	jobs: '/jobs',
 	indsatser: {
+		root: '/indsatser',
 		psykiske: '/indsatser/psykiske-vanskeligheder',
 		autisme_adhd: '/indsatser/autisme-adhd',
 		social_udfordringer: '/indsatser/sociale-udfordringer',
