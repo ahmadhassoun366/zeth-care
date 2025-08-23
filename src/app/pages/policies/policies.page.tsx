@@ -21,7 +21,7 @@ const COMPANY = {
 	cvr: '44772965',
 	address: 'Vr. Janderupvej 29, 6851 Janderup, Danmark',
 	email: 'job@tryglund.dk',
-	phone: '+45 22 55 06 35',
+	phone: '+45 20 61 47 01',
 	lastUpdated: '18. august 2025',
 	canonical: 'https://tryglund.dk/privatlivspolitik',
 };
