@@ -29,7 +29,7 @@ export default function FooterComponent() {
 				className="pointer-events-none absolute inset-0 hidden dark:block bg-[radial-gradient(60%_120%_at_50%_-20%,rgba(16,185,129,0.10),transparent_60%)]"
 			/>
 
-			<div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-16 pb-8">
+			<div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-16 pb-8">
 				{/* Top: Brand + short blurb + (optional) newsletter kept minimal */}
 				<div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 lg:items-start">
 					{/* Brand */}
