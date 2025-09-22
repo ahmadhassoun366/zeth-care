@@ -1,12 +1,12 @@
 // src/pages/HomeLanding.jsx
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
-import Hero from '../sections/hero-section.component';
-import Pillars from '../sections/pillar-section.component';
-import Services from '../sections/service-section.component';
-import Stats from '../sections/stand-band.section';
-import AkutBar from '../sections/akut-bar.section';
-import About from '../sections/about.section';
+import Hero from './sections/hero-section.component';
+import Pillars from './sections/pillar-section.component';
+import Services from './sections/service-section.component';
+import Stats from './sections/stand-band.section';
+import AkutBar from './sections/akut-bar.section';
+import About from './sections/about.section';
 import ROUTES from 'src/static/router.data';
 
 export default function HomeLanding() {

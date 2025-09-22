@@ -5,77 +5,104 @@ import { useContext, useEffect, useState } from 'react';
 import geneneralSettingsSvcContext from 'src/shared/services/general-settings/general-settings.context';
 import GeneralSettingsService from 'src/shared/services/general-settings/general-settings.service';
 
-
 // static
 import { THEMES } from 'src/static/settings/general-settings.data';
+import { motion, cubicBezier } from 'framer-motion';
+import { HandHeart } from 'lucide-react';
 
-// import DevMenu from './dev-menu.component';
-
-// const DevMenu = lazy(() => import('./dev-menu.component'));
-
-function MaintenanceComponent() {
-	return (
-		<div
-			className={`flex flex-col items-center justify-center gap-2 h-screen w-screen dark:bg-dark-800 bg-white`}
-		>
-			<h1 className="text-3xl dark:text-white text-black font-semibold">
-				Community Portal is under maintenance
-			</h1>
-
-			<p className="text-black dark:text-white">
-				We are currently working on the portal to make it better for you. Please check back
-				later
-			</p>
-		</div>
-	);
-}
+const EASE = cubicBezier(0.22, 1, 0.36, 1);
 
 function LoadingComponent() {
 	const genSettingsSvc = useContext<GeneralSettingsService>(geneneralSettingsSvcContext);
+	const theme = genSettingsSvc.getTheme();
+	const isDark = theme === THEMES.DARK;
 
 	return (
 		<div
-			className={`flex flex-col items-center justify-center gap-2 h-screen w-screen dark:bg-dark-800 bg-white`}
+			className={`fixed inset-0 z-[9999] grid place-items-center ${
+				isDark ? 'bg-neutral-950 text-neutral-50' : 'bg-white text-neutral-900'
+			}`}
+			role="status"
+			aria-live="polite"
+			aria-label="Indlæser"
 		>
-			<div className="flex items-center gap-x-2">
-				<h1 className="text-3xl dark:text-white text-black font-semibold">Loading PWR</h1>
-				<svg
-					width="40"
-					height="40"
-					viewBox="0 0 25 24"
-					fill="none"
-					xmlns="http://www.w3.org/2000/svg"
+			{/* background blobs */}
+			<motion.span
+				aria-hidden
+				className="pointer-events-none absolute -top-24 -left-24 h-80 w-80 rounded-full blur-3xl"
+				style={{
+					background: isDark ? 'rgba(16,185,129,.25)' : 'rgba(110,231,183,.45)',
+				}}
+				animate={{ y: [-10, 10, -10], scale: [1, 1.05, 1] }}
+				transition={{ duration: 8, repeat: Infinity, ease: EASE }}
+			/>
+			<motion.span
+				aria-hidden
+				className="pointer-events-none absolute -bottom-28 -right-24 h-[28rem] w-[28rem] rounded-full blur-3xl"
+				style={{
+					background: isDark ? 'rgba(5,150,105,.25)' : 'rgba(52,211,153,.35)',
+				}}
+				animate={{ y: [10, -6, 10], scale: [1.02, 1, 1.02], rotate: [-2, 2, -2] }}
+				transition={{ duration: 10, repeat: Infinity, ease: EASE }}
+			/>
+
+			{/* card */}
+			<div
+				className={`relative mx-4 w-full max-w-md overflow-hidden rounded-3xl border p-8 text-center shadow-xl backdrop-blur
+          ${isDark ? 'border-neutral-800 bg-neutral-900/70' : 'border-neutral-200 bg-white/70'}`}
+			>
+				{/* brand mark */}
+				<motion.div
+					className="mx-auto mb-4 grid h-14 w-14 place-items-center rounded-2xl text-white shadow-lg"
+					style={{
+						background:
+							'linear-gradient(135deg, rgb(22,163,74) 0%, rgb(16,185,129) 100%)',
+						boxShadow: isDark
+							? '0 10px 30px rgba(16,185,129,.15)'
+							: '0 10px 30px rgba(16,185,129,.25)',
+					}}
+					animate={{ scale: [1, 1.06, 1], rotate: [0, -2, 0] }}
+					transition={{ duration: 1.75, repeat: Infinity, ease: EASE }}
 				>
-					<g id="WOM-basic/pwr">
-						<path
-							id="Union"
-							fillRule="evenodd"
-							clipRule="evenodd"
-							d="M17.1737 4H4.5L7.47872 9.12497H13.8772L10.7205 14.7624H17.1835L20.5 8.93057L17.1737 4ZM10.531 14.5736L7.58887 9.41959L4.6097 15.0478L7.60546 20L10.531 14.5736Z"
-							fill={genSettingsSvc.getTheme() === THEMES.DARK ? 'white' : 'black'}
-						/>
-					</g>
-				</svg>
-			</div>
-			<div role="status">
-				<svg
-					aria-hidden="true"
-					className={`w-7 h-7 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600`}
-					viewBox="0 0 100 101"
-					fill="none"
-					xmlns="http://www.w3.org/2000/svg"
-				>
-					<path
-						d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
-						fill="currentColor"
+					<HandHeart size={22} strokeWidth={2.6} />
+				</motion.div>
+
+				{/* heading + sub */}
+				<h1 className="text-xl font-semibold tracking-tight">Indlæser Tryglund</h1>
+				<p className={`mt-1 text-sm ${isDark ? 'text-neutral-300' : 'text-neutral-600'}`}>
+					Vi forbereder indholdet – et øjeblik…
+				</p>
+
+				{/* progress bar */}
+				<div className="mt-6 h-2 w-full overflow-hidden rounded-full bg-neutral-200/70 dark:bg-neutral-700/60">
+					<motion.div
+						className="h-full rounded-full"
+						style={{
+							background: 'linear-gradient(90deg, rgb(16,185,129), rgb(5,150,105))',
+						}}
+						initial={{ x: '-100%' }}
+						animate={{ x: ['-100%', '0%', '100%'] }}
+						transition={{ duration: 1.6, repeat: Infinity, ease: EASE }}
 					/>
-					<path
-						d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
-						fill="currentFill"
-					/>
-				</svg>
-				<span className="sr-only">Loading...</span>
+				</div>
+
+				{/* tiny helper text */}
+				<div className={`mt-3 text-xs ${isDark ? 'text-neutral-400' : 'text-neutral-500'}`}>
+					Tip: Du kan skifte tema når som helst.
+				</div>
+
+				{/* subtle top accent */}
+				<div
+					className="pointer-events-none absolute inset-x-0 -top-px h-px opacity-60"
+					style={{
+						background:
+							'linear-gradient(90deg, transparent, rgba(16,185,129,.35), transparent)',
+					}}
+				/>
 			</div>
+
+			{/* SR-only fallback text for screen readers */}
+			<span className="sr-only">Indlæser…</span>
 		</div>
 	);
 }
@@ -87,8 +114,6 @@ type AppInitProps = {
 export default function AppInit({ children }: AppInitProps) {
 	// *~~~ inject services ~~~* //
 	const genSettingsSvc = useContext<GeneralSettingsService>(geneneralSettingsSvcContext);
-
-	const maintenanceMode = import.meta.env.VITE_APP_MAINTENANCE_MODE === 'true';
 
 	// *~~~ state ~~~* //
 	const [appLoaded, setAppLoaded] = useState<boolean>(false);
@@ -110,34 +135,14 @@ export default function AppInit({ children }: AppInitProps) {
 
 			// *~~~ html head ~~~* //
 
-			// font awesome
-			const faKey = import.meta.env.VITE_APP_FONTAWESOME_KEY;
-			const link = document.createElement('link');
-			link.href = `https://kit.fontawesome.com/${faKey}.css`;
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.crossOrigin = 'anonymous';
-			document.head.appendChild(link);
-
 			setAppLoaded(true);
 		})();
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
-	if (maintenanceMode) return <MaintenanceComponent />;
-
 	// TODO: add loading screen
 	if (!appLoaded) return <LoadingComponent />;
-
-	if (import.meta.env.VITE_APP_ENV === 'DEV') {
-		return (
-			<>
-				{/* <DevMenu /> */}
-				{children}
-			</>
-		);
-	}
 
 	return children;
 }
