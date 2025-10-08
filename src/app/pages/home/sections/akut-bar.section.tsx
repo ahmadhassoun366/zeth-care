@@ -47,7 +47,7 @@ export default function AkutBar() {
 							<div>
 								<div className="text-xs opacity-80">Akut telefon</div>
 								<div className="text-xl font-semibold tracking-tight">
-									+45 20 61 47 01
+									+45 60 22 33 47
 								</div>
 							</div>
 						</motion.a>
@@ -65,7 +65,7 @@ export default function AkutBar() {
 							<div>
 								<div className="text-xs opacity-80">Generelle henvendelser</div>
 								<div className="text-xl font-semibold tracking-tight">
-									+45 20 61 47 01
+									+45 60 22 33 47
 								</div>
 							</div>
 						</motion.a>

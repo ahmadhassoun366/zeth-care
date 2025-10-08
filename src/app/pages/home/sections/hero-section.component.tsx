@@ -227,7 +227,7 @@ export default function Hero() {
 								whileTap={{ scale: 0.97 }}
 							>
 								<Phone size={18} />
-								Akut: +45 20 61 47 01
+								Akut: +45 60 22 33 47
 							</motion.a>
 						</motion.div>
 					</motion.div>

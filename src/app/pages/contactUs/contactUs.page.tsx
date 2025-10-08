@@ -171,7 +171,7 @@ export default function ContactPage() {
 									</div>
 								</a>
 								<a
-									href="mailto:AB@trygbasen.dk"
+									href="mailto:ab@trygbasen.dk"
 									className="flex items-center gap-3 rounded-lg border border-neutral-200 dark:border-neutral-800 p-3 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition"
 								>
 									<Mail
@@ -181,7 +181,7 @@ export default function ContactPage() {
 									<div>
 										<div className="font-medium">Mail kontakt</div>
 										<div className="text-neutral-600 dark:text-neutral-400">
-											AB@trygbasen.dk
+											ab@trygbasen.dk
 										</div>
 									</div>
 								</a>
@@ -410,10 +410,10 @@ export default function ContactPage() {
 									Send henvendelse <ArrowRight size={18} />
 								</button>
 								<a
-									href="mailto:AB@trygbasen.dk"
+									href="mailto:ab@trygbasen.dk"
 									className="text-sm underline hover:no-underline"
 								>
-									eller skriv direkte på AB@trygbasen.dk
+									eller skriv direkte på ab@trygbasen.dk
 								</a>
 							</div>
 						</form>
@@ -461,7 +461,7 @@ export default function ContactPage() {
 						</p>
 					</div>
 					<a
-						href="mailto:AB@trygbasen.dk"
+						href="mailto:ab@trygbasen.dk"
 						className="inline-flex items-center gap-2 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 font-medium transition"
 					>
 						<Mail size={18} /> Skriv til os

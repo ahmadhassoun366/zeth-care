@@ -20,8 +20,8 @@ const COMPANY = {
 	name: 'Trygbasen ApS',
 	cvr: '45934373',
 	address: 'Vr. Janderupvej 29, 6851 Janderup, Danmark',
-	email: 'job@trygbasen.dk',
-	phone: '+45 20 61 47 01',
+	email: 'jobs@trygbasen.dk',
+	phone: '+45 60 22 33 47',
 	lastUpdated: '18. august 2025',
 	canonical: 'https://trygbasen.dk/privatlivspolitik',
 };

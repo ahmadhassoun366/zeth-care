@@ -26,7 +26,7 @@ const jobs = [
 		type: 'Fuld tid',
 		duration: 'Ca. 12 måneder (mulighed for forlængelse)',
 		start: 'Snarest muligt',
-		email: 'job@trygbasen.dk',
+		email: 'jobs@trygbasen.dk',
 		heroTag: 'Ny stilling',
 		intro: 'Brænder du for at gøre en forskel i menneskers hverdag, og har du lyst til at blive en del af et dedikeret og fagligt stærkt team? Så er det måske dig, vi søger som barselsvikar til en af vores afdelinger i Østjylland.',
 		about: 'Vi søger en ergoterapeut til et barselsvikariat. Du bliver en del af et tværfagligt team, hvor samarbejde, faglig sparring og borgerinddragelse er i fokus.',
