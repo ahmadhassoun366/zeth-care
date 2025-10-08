@@ -22,11 +22,11 @@ const jobs = [
 		id: 'ergoterapeut-oestjylland-barsel',
 		title: 'Barselsvikariat: Ergoterapeut',
 		location: 'Østjylland',
-		department: 'Tryglund – Afdeling Østjylland',
+		department: 'Trygbasen – Afdeling Østjylland',
 		type: 'Fuld tid',
 		duration: 'Ca. 12 måneder (mulighed for forlængelse)',
 		start: 'Snarest muligt',
-		email: 'job@tryglund.dk',
+		email: 'job@trygbasen.dk',
 		heroTag: 'Ny stilling',
 		intro: 'Brænder du for at gøre en forskel i menneskers hverdag, og har du lyst til at blive en del af et dedikeret og fagligt stærkt team? Så er det måske dig, vi søger som barselsvikar til en af vores afdelinger i Østjylland.',
 		about: 'Vi søger en ergoterapeut til et barselsvikariat. Du bliver en del af et tværfagligt team, hvor samarbejde, faglig sparring og borgerinddragelse er i fokus.',
@@ -193,7 +193,7 @@ function JobDetails({ job, onBack }: { job: any; onBack?: () => void }) {
 					href={`mailto:${job.email}?subject=${encodeURIComponent(
 						job.title
 					)}&body=${encodeURIComponent(
-						'Hej Tryglund –\n\nJeg er interesseret i stillingen og vedlægger mit CV.\n\nVenlig hilsen\n'
+						'Hej Trygbasen –\n\nJeg er interesseret i stillingen og vedlægger mit CV.\n\nVenlig hilsen\n'
 					)}`}
 					className="inline-flex items-center gap-2 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 font-medium transition"
 				>
@@ -221,7 +221,7 @@ export default function JobsPage() {
 	return (
 		<main className="bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100">
 			<Helmet>
-				<title>Ledige stillinger – Tryglund</title>
+				<title>Ledige stillinger – Trygbasen</title>
 				{/* SEO JobPosting (JSON-LD) for the active job */}
 				<script type="application/ld+json">
 					{JSON.stringify({
@@ -232,7 +232,7 @@ export default function JobsPage() {
 						datePosted: new Date().toISOString().split('T')[0],
 						hiringOrganization: {
 							'@type': 'Organization',
-							name: 'Tryglund',
+							name: 'Trygbasen',
 						},
 						jobLocation: {
 							'@type': 'Place',
@@ -339,7 +339,7 @@ export default function JobsPage() {
 					</div>
 					<a
 						href={`mailto:${jobs[0].email}?subject=${encodeURIComponent(
-							'Uopfordret ansøgning – Tryglund'
+							'Uopfordret ansøgning – Trygbasen'
 						)}`}
 						className="inline-flex items-center gap-2 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 font-medium transition"
 					>

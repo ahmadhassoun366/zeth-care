@@ -75,7 +75,7 @@ export default function PsykiskeVanskelighederPage() {
 	return (
 		<main className="relative overflow-hidden bg-gradient-to-b from-gray-50 to-white pt-24 dark:from-neutral-950 dark:to-neutral-900 text-neutral-900 dark:text-neutral-100">
 			<Helmet>
-				<title>Psykiske vanskeligheder – Tryglund</title>
+				<title>Psykiske vanskeligheder – Trygbasen</title>
 			</Helmet>
 
 			{/* Background blobs */}

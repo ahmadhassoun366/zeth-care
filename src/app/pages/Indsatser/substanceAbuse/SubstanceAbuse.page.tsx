@@ -7,7 +7,7 @@ export default function SubstanceAbusePage() {
 	return (
 		<main className="relative overflow-hidden bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100">
 			<Helmet>
-				<title>Misbrug & Dobbeltdiagnoser – Tryglund</title>
+				<title>Misbrug & Dobbeltdiagnoser – Trygbasen</title>
 			</Helmet>
 
 			{/* Background blobs */}

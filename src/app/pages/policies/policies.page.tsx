@@ -17,13 +17,13 @@ const stagger = {
 } as const;
 
 const COMPANY = {
-	name: 'Tryglund ApS',
-	cvr: '44772965',
+	name: 'Trygbasen ApS',
+	cvr: '45934373',
 	address: 'Vr. Janderupvej 29, 6851 Janderup, Danmark',
-	email: 'job@tryglund.dk',
+	email: 'job@trygbasen.dk',
 	phone: '+45 20 61 47 01',
 	lastUpdated: '18. august 2025',
-	canonical: 'https://tryglund.dk/privatlivspolitik',
+	canonical: 'https://trygbasen.dk/privatlivspolitik',
 };
 
 const SECTIONS = [
@@ -45,14 +45,14 @@ export default function PrivacyPolicyModern() {
 	return (
 		<main className="bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100">
 			<Helmet>
-				<title>Privatlivspolitik – Tryglund</title>
+				<title>Privatlivspolitik – Trygbasen</title>
 				<meta
 					name="description"
-					content="Læs hvordan Tryglund ApS behandler personoplysninger: formål, retsgrundlag, opbevaring, rettigheder og kontakt."
+					content="Læs hvordan Trygbasen ApS behandler personoplysninger: formål, retsgrundlag, opbevaring, rettigheder og kontakt."
 				/>
 				<link rel="canonical" href={COMPANY.canonical} />
 				{/* OG for nice sharing previews */}
-				<meta property="og:title" content="Privatlivspolitik – Tryglund" />
+				<meta property="og:title" content="Privatlivspolitik – Trygbasen" />
 				<meta
 					property="og:description"
 					content="Information om vores behandling af personoplysninger."

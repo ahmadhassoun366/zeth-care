@@ -51,7 +51,7 @@ export default function About() {
 				<div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
 					<div className="max-w-3xl">
 						<span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-xs font-medium tracking-wider text-green-800 ring-1 ring-green-600/20 backdrop-blur dark:bg-white/10 dark:text-green-300 dark:ring-green-500/20">
-							Tryglund
+							Trygbasen
 							<span className="h-1 w-1 rounded-full bg-green-700 dark:bg-green-300" />
 							Enkeltmandsprojekt
 						</span>
@@ -82,7 +82,7 @@ export default function About() {
 							transition={{ duration: 0.45, ease: EASE }}
 						>
 							<span className="font-extrabold text-xl text-black dark:text-white">
-								Tryglund
+								Trygbasen
 							</span>{' '}
 							er et enkeltmandsprojekt med base i et trygt og naturskønt
 							sommerhusmiljø – målrettet borgere med komplekse behov, der har brug for
@@ -161,7 +161,7 @@ export default function About() {
 						{/* Replace placeholder with image */}
 						<img
 							src="/media/images/forest.jpg" // your optimized image path
-							alt="Tryglund – støtte og udvikling i trygge rammer"
+							alt="Trygbasen – støtte og udvikling i trygge rammer"
 							className="absolute inset-0 h-full w-full object-cover"
 						/>
 
@@ -182,7 +182,7 @@ export default function About() {
 				<div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
 					<div className="mb-8">
 						<span className="inline-flex items-center gap-2 rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-800 ring-1 ring-green-600/20 dark:bg-green-900/30 dark:text-green-300 dark:ring-green-500/20">
-							Tryglund i korte træk{' '}
+							Trygbasen i korte træk{' '}
 							<span className="h-1 w-1 rounded-full bg-green-700 dark:bg-green-300" />
 						</span>
 					</div>

@@ -35,7 +35,7 @@ export default function YouthAtRiskPage() {
 	return (
 		<main className="bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100">
 			<Helmet>
-				<title>Kriminalitetstruede unge – Tryglund</title>
+				<title>Kriminalitetstruede unge – Trygbasen</title>
 			</Helmet>
 
 			{/* Hero */}

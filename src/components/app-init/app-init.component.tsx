@@ -68,7 +68,7 @@ function LoadingComponent() {
 				</motion.div>
 
 				{/* heading + sub */}
-				<h1 className="text-xl font-semibold tracking-tight">Indlæser Tryglund</h1>
+				<h1 className="text-xl font-semibold tracking-tight">Indlæser Trygbasen</h1>
 				<p className={`mt-1 text-sm ${isDark ? 'text-neutral-300' : 'text-neutral-600'}`}>
 					Vi forbereder indholdet – et øjeblik…
 				</p>

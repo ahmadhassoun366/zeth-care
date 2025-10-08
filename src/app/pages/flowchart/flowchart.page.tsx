@@ -32,7 +32,7 @@ export default function FlowchartPage() {
 					</h1>
 					<p className="mt-3 text-neutral-700 dark:text-neutral-300 text-lg leading-relaxed">
 						En trin-for-trin visuel gennemgang af processen i et enkeltmandsprojekt hos
-						Tryglund – fra første kontakt til opfølgning og fremtidsplanlægning.
+						Trygbasen – fra første kontakt til opfølgning og fremtidsplanlægning.
 					</p>
 				</header>
 

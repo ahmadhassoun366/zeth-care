@@ -141,7 +141,7 @@ export default function FooterComponent() {
 
 				{/* Bottom bar: legal */}
 				<div className="mt-2 text-xs md:text-sm text-neutral-600 dark:text-neutral-400 sm:flex sm:items-center sm:justify-between">
-					<p>© {year} Tryglund. Alle rettigheder forbeholdes.</p>
+					<p>© {year} Trygbasen. Alle rettigheder forbeholdes.</p>
 					<div className="mt-3 sm:mt-0 flex flex-wrap items-center gap-x-4 gap-y-2">
 						{/* <Link
 							to="/legal/vilkar"

@@ -102,10 +102,10 @@ export default function IndsatserIndexPage() {
 		<MotionConfig reducedMotion="user">
 			<main className="relative overflow-hidden bg-gradient-to-b from-gray-50 to-white dark:from-neutral-950 dark:to-neutral-900 text-neutral-900 dark:text-neutral-100 pt-24">
 				<Helmet>
-					<title>Indsatser – Tryglund</title>
+					<title>Indsatser – Trygbasen</title>
 					<meta
 						name="description"
-						content="Se alle Tryglunds indsatser samlet ét sted. Filtrér efter område og find hurtigt den rette indsats."
+						content="Se alle Trygbasens indsatser samlet ét sted. Filtrér efter område og find hurtigt den rette indsats."
 					/>
 					<link rel="canonical" href={ROUTES.indsatser.root} />
 				</Helmet>

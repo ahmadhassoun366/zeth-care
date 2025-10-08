@@ -70,22 +70,22 @@ export default function ContactPage() {
 	return (
 		<main className="bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100">
 			<Helmet>
-				<title>Kontakt og Visitation – Tryglund</title>
+				<title>Kontakt og Visitation – Trygbasen</title>
 				<script type="application/ld+json">
 					{JSON.stringify({
 						'@context': 'https://schema.org',
 						'@type': 'ContactPage',
-						name: 'Kontakt og Visitation – Tryglund',
+						name: 'Kontakt og Visitation – Trygbasen',
 						about: 'Kontakt og visitation for børn og unge',
 						mainEntity: {
 							'@type': 'Organization',
-							name: 'Tryglund',
+							name: 'Trygbasen',
 							contactPoint: [
 								{
 									'@type': 'ContactPoint',
 									contactType: 'Visitation',
-									telephone: '20614701',
-									email: 'ab@tryglund.dk',
+									telephone: '60223347',
+									email: 'ab@trygbasen.dk',
 									areaServed: 'DK',
 									availableLanguage: ['da'],
 								},
@@ -156,7 +156,7 @@ export default function ContactPage() {
 							<h2 className="text-xl font-semibold mb-4">Kontakt os</h2>
 							<div className="space-y-3 text-sm text-neutral-700 dark:text-neutral-300">
 								<a
-									href="tel:20614701"
+									href="tel:60223347"
 									className="flex items-center gap-3 rounded-lg border border-neutral-200 dark:border-neutral-800 p-3 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition"
 								>
 									<Phone
@@ -166,12 +166,12 @@ export default function ContactPage() {
 									<div>
 										<div className="font-medium">Telefonisk kontakt</div>
 										<div className="text-neutral-600 dark:text-neutral-400">
-											20614701
+											60223347
 										</div>
 									</div>
 								</a>
 								<a
-									href="mailto:AB@tryglund.dk"
+									href="mailto:AB@trygbasen.dk"
 									className="flex items-center gap-3 rounded-lg border border-neutral-200 dark:border-neutral-800 p-3 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition"
 								>
 									<Mail
@@ -181,7 +181,7 @@ export default function ContactPage() {
 									<div>
 										<div className="font-medium">Mail kontakt</div>
 										<div className="text-neutral-600 dark:text-neutral-400">
-											AB@tryglund.dk
+											AB@trygbasen.dk
 										</div>
 									</div>
 								</a>
@@ -229,7 +229,7 @@ export default function ContactPage() {
 								Lokation
 							</h3>
 							<p className="text-sm text-neutral-700 dark:text-neutral-300">
-								Tryglund – Østjylland og omegn. Besøg efter aftale.
+								Trygbasen – Østjylland og omegn. Besøg efter aftale.
 							</p>
 						</div>
 					</div>
@@ -396,7 +396,7 @@ export default function ContactPage() {
 										htmlFor="consent"
 										className="text-neutral-700 dark:text-neutral-300"
 									>
-										Jeg giver samtykke til, at Tryglund må kontakte mig på
+										Jeg giver samtykke til, at Trygbasen må kontakte mig på
 										baggrund af min henvendelse.
 									</label>
 								</div>
@@ -410,10 +410,10 @@ export default function ContactPage() {
 									Send henvendelse <ArrowRight size={18} />
 								</button>
 								<a
-									href="mailto:AB@tryglund.dk"
+									href="mailto:AB@trygbasen.dk"
 									className="text-sm underline hover:no-underline"
 								>
-									eller skriv direkte på AB@tryglund.dk
+									eller skriv direkte på AB@trygbasen.dk
 								</a>
 							</div>
 						</form>
@@ -453,15 +453,15 @@ export default function ContactPage() {
 						</h3>
 						<p className="text-neutral-700 dark:text-neutral-300">
 							Ring på{' '}
-							<a href="tel:20614701" className="underline">
-								20614701
+							<a href="tel:60223347" className="underline">
+								60223347
 							</a>{' '}
 							– vi besvarer henvendelser i telefontiden og vender tilbage hurtigst
 							muligt.
 						</p>
 					</div>
 					<a
-						href="mailto:AB@tryglund.dk"
+						href="mailto:AB@trygbasen.dk"
 						className="inline-flex items-center gap-2 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 font-medium transition"
 					>
 						<Mail size={18} /> Skriv til os

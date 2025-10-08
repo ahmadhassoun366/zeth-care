@@ -154,7 +154,7 @@ export default function Hero() {
 							className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-xs font-medium tracking-wider text-green-800 ring-1 ring-green-600/20 backdrop-blur dark:bg-white/10 dark:text-green-300 dark:ring-green-500/20"
 							variants={fadeUp}
 						>
-							Tryglund
+							Trygbasen
 							<span className="h-1 w-1 rounded-full bg-green-700 dark:bg-green-300" />
 							Professionel omsorg
 						</motion.div>
@@ -221,7 +221,7 @@ export default function Hero() {
 							</motion.div>
 
 							<motion.a
-								href="tel:+4522550635"
+								href="tel:+4560223347"
 								className="group inline-flex items-center gap-2 rounded-full border border-green-600/30 bg-green-50 px-6 py-3 text-green-800 transition hover:bg-green-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-600/30 dark:border-green-500/30 dark:bg-green-900/40 dark:text-green-300 dark:hover:bg-green-800/50"
 								whileHover={{ scale: 1.05 }}
 								whileTap={{ scale: 0.97 }}

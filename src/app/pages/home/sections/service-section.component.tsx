@@ -33,7 +33,7 @@ const DETAILS: Record<ServiceKey, { title: string; body: JSX.Element }> = {
 		body: (
 			<>
 				<p className="mb-3">
-					Hos Tryglund tilbyder vi trygge og professionelle rammer for børn og unge i
+					Hos Trygbasen tilbyder vi trygge og professionelle rammer for børn og unge i
 					krise. Vi er omstillingsparate, handler hurtigt og tilpasser os den enkelte
 					unges behov – både fagligt og menneskeligt.
 				</p>

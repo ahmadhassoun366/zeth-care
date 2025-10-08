@@ -12,7 +12,7 @@ export default function SocialChallengesPage() {
 	return (
 		<main className="bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100">
 			<Helmet>
-				<title>Sociale udfordringer – Tryglund</title>
+				<title>Sociale udfordringer – Trygbasen</title>
 			</Helmet>
 
 			{/* Hero Section */}

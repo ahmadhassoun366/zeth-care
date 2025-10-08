@@ -37,9 +37,9 @@ export default function AkutBar() {
 						{/* Akut telefon */}
 						<motion.a
 							variants={item}
-							href="tel:+4522550635"
+							href="tel:+4560223347"
 							className="group flex items-center gap-4 rounded-xl p-3 transition hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
-							aria-label="Ring til akut telefon +45 22 55 06 35"
+							aria-label="Ring til akut telefon +45 60 22 33 47"
 						>
 							<div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-white/10 ring-1 ring-white/20 transition group-hover:scale-105 group-hover:bg-white/20">
 								<Phone size={22} />
@@ -55,9 +55,9 @@ export default function AkutBar() {
 						{/* Generelle henvendelser */}
 						<motion.a
 							variants={item}
-							href="tel:+4522550635"
+							href="tel:+4560223347"
 							className="group flex items-center gap-4 rounded-xl p-3 transition hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
-							aria-label="Ring til generelle henvendelser +45 22 55 06 35"
+							aria-label="Ring til generelle henvendelser +45 60 22 33 47"
 						>
 							<div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-white/10 ring-1 ring-white/20 transition group-hover:scale-105 group-hover:bg-white/20">
 								<Phone size={22} />

@@ -47,7 +47,7 @@ export default function About() {
 							variants={fadeUp}
 							className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white md:text-4xl"
 						>
-							Om Tryglund
+							Om Trygbasen
 						</motion.h2>
 
 						<motion.p
@@ -125,7 +125,7 @@ export default function About() {
 						<div className="mt-6 grid gap-2 text-sm">
 							<div className="text-neutral-600 dark:text-neutral-300">CVR</div>
 							<div className="font-semibold text-neutral-900 dark:text-white">
-								44772965
+								45934373
 							</div>
 
 							<div className="mt-4 text-neutral-600 dark:text-neutral-300">

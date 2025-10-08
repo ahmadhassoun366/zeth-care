@@ -225,7 +225,7 @@ export default function HeaderComponent() {
 							<HandHeart size={18} strokeWidth={2.5} />
 						</span>
 						<span className="hidden text-sm font-semibold text-neutral-900 sm:inline dark:text-white">
-							Tryglund
+							Trygbasen
 						</span>
 					</Link>
 
