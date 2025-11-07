@@ -1,5 +1,5 @@
 // 3rd party
-import { Suspense, lazy, useContext, useEffect } from 'react';
+import { Suspense, useContext, useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
 import { Route, BrowserRouter, Routes, useLocation } from 'react-router-dom';
 
@@ -37,12 +37,8 @@ import ContactPage from './pages/contactUs/contactUs.page.tsx';
 import HomeLanding from './pages/home/home.page.tsx';
 import PrivacyPolicyPage from './pages/policies/policies.page.tsx';
 import IndsatserIndexPage from './pages/Indsatser/IndsatserIndex.page.tsx';
+import TestPage from './pages/test/test.page.tsx';
 // *~~~ lazy loaded pages ~~~*
-
-// pages
-
-const TestPage = lazy(() => import('../app/pages/test/test.tsx'));
-// const UiKitPage = lazy(() => import('./dev/ui-kit/ui-kit'));
 
 function ScrollToTop() {
 	const { pathname } = useLocation();
@@ -60,15 +56,9 @@ function RoutingComponent() {
 			<Routes>
 				{/* header footer layout */}
 				<Route element={<HeaderFooterLayout />}>
-					{/* dev only routes */}
-					{import.meta.env.VITE_APP_ENV === 'dev' && (
-						<>
-							<Route path="/test" element={<TestPage />} />
-							{/* <Route path={'/ui'} element={<UiKitPage />} /> */}
-						</>
-					)}
-
 					{/* root page  */}
+					
+					<Route path={ROUTES.test} element={<TestPage />} />
 					<Route path={ROUTES.root} element={<HomeLanding />} />
 					<Route path={ROUTES.omos} element={<About />} />
 					<Route path={ROUTES.flowchart} element={<FlowchartPage />} />
@@ -96,7 +86,7 @@ function RoutingComponent() {
 					<Route path={ROUTES.jobs} element={<JobsPage />} />
 					<Route path={ROUTES.kontakt} element={<ContactPage />} />
 					<Route path={ROUTES.policies} element={<PrivacyPolicyPage />} />
-						<Route path={ROUTES.indsatser.root} element={<IndsatserIndexPage />} />
+					<Route path={ROUTES.indsatser.root} element={<IndsatserIndexPage />} />
 					{/* discover page */}
 					{/* 404 */}
 					<Route path="*" element={<NotFoundPage />} />

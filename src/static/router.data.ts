@@ -15,8 +15,7 @@ const ROUTES = {
 	},
 	kontakt: '/kontakt',
 	policies: '/privatlivspolitik',
-
-
+	test: '/test',
 };
 
 export default ROUTES;

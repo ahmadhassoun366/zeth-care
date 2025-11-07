@@ -19,7 +19,7 @@ const stagger = {
 const COMPANY = {
 	name: 'Trygbasen ApS',
 	cvr: '45934373',
-	address: 'Vr. Janderupvej 29, 6851 Janderup, Danmark',
+	address: 'Låsbyvej 61, 8660 Skanderborg',
 	email: 'jobs@trygbasen.dk',
 	phone: '+45 60 22 33 47',
 	lastUpdated: '18. august 2025',
