@@ -132,7 +132,7 @@ export default function About() {
 								Adresse
 							</div>
 							<div className="font-semibold text-neutral-900 dark:text-white">
-								vr. Janderupvej 29, 6851 Janderup
+								Låsbyvej 61, 8660 Skanderborg
 							</div>
 						</div>
 
